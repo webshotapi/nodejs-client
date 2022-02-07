@@ -24,10 +24,19 @@ export type ClientType = {
 export class Client implements ClientInterface {
   private api_key: string;
 
+  /**
+   * Contructor with your API KEY
+   * @param api_key
+   */
   constructor(api_key: string) {
     this.setApiKey(api_key);
   }
 
+  /**
+   * Generate screenshot in PDF format
+   * @param url
+   * @param params
+   */
   async pdf(
     url: string,
     params: Params = { link: "" }
@@ -35,6 +44,12 @@ export class Client implements ClientInterface {
     return this.screenshot(url, ScreenshotType.PDF, params);
   }
 
+  /**
+   * Take website screenshot in specific file format
+   * @param url - url to website
+   * @param file_type - jpg, png, pdf
+   * @param params - params like {no_cache: true, width: 1024}
+   */
   async screenshot(
     url: string,
     file_type: ScreenshotType,
@@ -59,6 +74,12 @@ export class Client implements ClientInterface {
     return new Response(response);
   }
 
+  /**
+   * Extract words with position, html, text or selectors from website
+   *
+   * @param url
+   * @param params
+   */
   async extract(
     url: string,
     params: Params = { link: "" }
@@ -79,6 +100,9 @@ export class Client implements ClientInterface {
     return new Response(response);
   }
 
+  /**
+   * Download your account plan info.
+   */
   async info(): Promise<ResponseInterface> {
     const request = this.requestFactory();
     const response = await request.get(`/info`);
@@ -94,10 +118,16 @@ export class Client implements ClientInterface {
     return new Request(this);
   }
 
+  /**
+   * Operation in your projects
+   */
   project() {
     return Projects(this);
   }
 
+  /**
+   * Add url to project or download completed requests
+   */
   projectUrl() {
     const projectUrl = ProjectUrl(this);
     const createWebshotapi = {
@@ -128,6 +158,10 @@ export class Client implements ClientInterface {
     };
   }
 
+  /**
+   * Set api key to our service
+   * @param api_key
+   */
   setApiKey(api_key: string) {
     this.api_key = api_key;
   }
