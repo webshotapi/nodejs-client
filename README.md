@@ -1,4 +1,4 @@
-# WebShotApi.com API client for NodeJS 
+# WebShotApi.com API client for NodeJS/Typescript
 
 Take screenshot and save image in JPG, PNG, PDF. You can also extract selectors for all HTML elements with coordinates and css styles after browser rendering.
 In our api you can create project and send all you urls to queue. Our server will do all the work for you
@@ -10,7 +10,13 @@ Full documentation about our api you can find in this website [Website screensho
 Use the package manager [NPM](https://www.npmjs.com/package/webshotapi) to install our client in nodejs.
 
 ```bash
-npm install webshotapi
+npm install @webshotapi/client
+```
+
+or
+
+```sh
+yarn add @webshotapi/client
 ```
 
 
@@ -22,20 +28,20 @@ Api key you can generate after register.
 
 ### Take screenshot and save jpg to file
 ```javascript
-const webshotapi = require('webshotapi');
+const { Client } = require('webshotapi');
 
 //Image download
 const TOKEN = "YOUR TOKEN HERE";
 (async()=>{
     try{
-        const client = new Webshotapi(TOKEN);
-        const result = await client.screenshot_jpg('https://www.example.com', {
+        const client = new Client(TOKEN);
+        const result = await client.screenshot('https://www.example.com', 'jpg', {
             remove_modals:1,
-            'width': 1920,
-            'no_cache': 1
+            width: 1920,
+            no_cache: 1
         });
         
-        #save screenshot to file
+        //save screenshot to file
         await result.save('/tmp/screenshot_test.jpg');
     }catch(e){
         console.log("Error", e);
@@ -46,20 +52,20 @@ const TOKEN = "YOUR TOKEN HERE";
 ### Take screenshot and save PDF to file
 You can covert your html page to invoice in PDF.
 ```javascript
-const webshotapi = require('webshotapi');
+const { Client } = require('webshotapi');
 
 //Image download
 const TOKEN = "YOUR TOKEN HERE";
 (async()=>{
     try{
-        const client = new Webshotapi(TOKEN);
-        const result = await client.screenshot_pdf('https://www.example.com', {
+        const client = new Client(TOKEN);
+        const result = await client.pdf('https://www.example.com', {
             remove_modals:1,
             'width': 1920,
             'no_cache': 1
         });
         
-        #save screenshot to file
+        //save screenshot to file
         await result.save('/tmp/screenshot_test.pdf');
     }catch(e){
         console.log("Error", e);
@@ -72,13 +78,13 @@ Unique software to extract all selectors for HTML elements from website with css
 
 #### Sample script:
 ```javascript
-const webshotapi = require('webshotapi');
+const { Client } = require('webshotapi');
 
 //Image download
 const TOKEN = "YOUR TOKEN HERE";
 (async()=>{
     try{
-        const client = new Webshotapi(TOKEN);
+        const client = new Client(TOKEN);
         const result = await client.extract('https://www.example.com', {
             "remove_modals": 1,
             "ads": 1,
@@ -156,8 +162,6 @@ const TOKEN = "YOUR TOKEN HERE";
 
 ## API docs
 Full documentation about our api you can find in this website [API DOCS](https://webshotapi.com/docs/)
-
-## About our service
 
 
 ## License

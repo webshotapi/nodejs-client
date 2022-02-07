@@ -1,0 +1,2397 @@
+{
+    "source": "mockoon:1.17.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "cff1a890-8b06-4dd5-b6a7-8c13b1fbe456",
+                "lastMigration": 19,
+                "name": "Webshotapi Server",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 4000,
+                "hostname": "0.0.0.0",
+                "routes": [
+                    {
+                        "uuid": "eaa18ebe-5432-45bb-a756-e63ed2b2d24c",
+                        "documentation": "Get your account plan info",
+                        "method": "get",
+                        "endpoint": "info",
+                        "responses": [
+                            {
+                                "uuid": "cbc9d57c-fc7b-490b-a490-ff71dec5e427",
+                                "body": "{\n  \"quota_date\": \"2021-01-07T23:00:00.000Z\",\n  \"quota_remaining\": 69545,\n  \"quota_limit\": 80000,\n  \"max_concurrent_requests\": 32\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Return info with free requests etc.",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "a5019f06-95f1-4201-b84c-d52b238279b0",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "e0a132a4-104f-41a5-b861-fec5b2820345",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "b2d1fa15-b175-430c-bfe1-200dab4cc8e1",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 402,
+                                "label": "Your account has no more requests. Request exceeded. Please buy bigger plan",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "74cb6891-5565-44d8-b729-89375d9a920b",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Cant download page, file robots.txt in requested server block our robot",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "8debf8e3-13e2-4201-89a6-d96e5baff84e",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests or Request limit for domain",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "94517448-dbbd-48fb-a8a5-bae70d3c515e",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "9219eea4-3481-4278-901a-1eb29f205d01",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "d7a1c44e-c93a-422c-be59-63c96ca13442",
+                        "documentation": "Create new project, after that you can add urls with parameters to processing and wait for final files to download",
+                        "method": "post",
+                        "endpoint": "projects",
+                        "responses": [
+                            {
+                                "uuid": "bdd9fa90-8d41-4415-b9b0-f1dbf239b43d",
+                                "body": "{\n  \"id\": \"507f191e810c19729de860ea\",\n  \"added\": \"2020-12-17T23:13:57.000Z\",\n  \"updated\": \"2020-12-17T23:13:57.000Z\",\n  \"name\": \"My project\",\n  \"status\": \"{{oneOf (array 'active' 'disabled' 'expired' 'to_delete')}}\"\n}",
+                                "latency": 0,
+                                "statusCode": 201,
+                                "label": "If created new project return project object",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "a421d9ca-4c17-4e75-a61d-e0bbe5921ece",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "bba6210b-f4c9-4282-947a-5433cd07e887",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "803d84d1-c219-491a-817f-8042388b6cad",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "5afdec10-791e-4bba-99ff-330b09da35ea",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "e2492e3a-4f17-4837-bc3e-4fd38006d190",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "a28136d3-bd07-43d1-bc6f-25f643b529e7",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "e38b81e4-d7f4-441c-9da6-f31316abbbf6",
+                        "documentation": "Return all user projects",
+                        "method": "get",
+                        "endpoint": "projects",
+                        "responses": [
+                            {
+                                "uuid": "bae1628f-6caa-41a4-9365-37ac232276f9",
+                                "body": "{\n  \"projects\": [\n    {\n      \"id\": \"507f191e810c19729de860ea\",\n      \"added\": \"2020-12-17T23:13:57.000Z\",\n      \"updated\": \"2020-12-17T23:13:57.000Z\",\n      \"name\": \"My project\",\n      \"status\": \"{{oneOf (array 'active' 'disabled' 'expired' 'to_delete')}}\",\n      \"stats\": {\n        \"executed\": 850,\n        \"no_executed\": 140,\n        \"errors\": 10,\n        \"all_links\": 1000,\n        \"waiting\": 140,\n        \"procent\": 85\n      }\n    }\n  ],\n  \"pagination\": {\n    \"next_page\": \"/projects/5534534543/urls/5\",\n    \"prev_page\": \"/projects/5534534543/urls/3\",\n    \"last_page\": \"/projects/5534534543/urls/54\",\n    \"first_page\": \"/projects/5534534543/urls/1\",\n    \"pages\": 54,\n    \"current_page\": 4\n  }\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Return list of projects",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "485886a9-c375-4a4e-a409-f219a05a8064",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "31b6b62e-e1dc-40e6-a11d-f7945e55e135",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "8b14446d-e353-4c49-bd84-58ca08abf6fc",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "758459d6-cdfd-4db2-8cdc-f4a3e0d2c3be",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "f922a87e-c934-4777-8251-ae533d7d83a4",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "689b495c-fb2d-424e-89a6-dbe4b9f045f2",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "98d68e6e-0885-496c-ab79-d6ec5e8fbcb3",
+                        "documentation": "Get project By ID",
+                        "method": "get",
+                        "endpoint": "projects/:id",
+                        "responses": [
+                            {
+                                "uuid": "73604258-fafc-452a-b496-c2ebb4dd615f",
+                                "body": "{\n  \"id\": \"507f191e810c19729de860ea\",\n  \"added\": \"2020-12-17T23:13:57.000Z\",\n  \"updated\": \"2020-12-17T23:13:57.000Z\",\n  \"name\": \"My project\",\n  \"status\": \"{{oneOf (array 'active' 'disabled' 'expired' 'to_delete')}}\",\n  \"stats\": {\n    \"executed\": 850,\n    \"no_executed\": 140,\n    \"errors\": 10,\n    \"all_links\": 1000,\n    \"waiting\": 140,\n    \"procent\": 85\n  }\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Return list of projects",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "8eaf2a06-b6cd-4397-bb54-30119b7a64f4",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "3aaa93a5-26be-45e9-b5af-7f28469a3637",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "eb5e32da-e133-480c-8305-ddceccc50559",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "2eb99eeb-3c29-458b-bf1d-58061b71f38d",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "fb82f6a2-21a4-4cc0-83fe-4556b05825dc",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "82264e32-141e-4432-a959-f55d4826443a",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "2cb68d40-6ecf-41ba-b891-1e53af6152bc",
+                        "documentation": "Update exists project",
+                        "method": "patch",
+                        "endpoint": "projects/:id",
+                        "responses": [
+                            {
+                                "uuid": "ca756f2a-20df-4777-8003-593cd89906f3",
+                                "body": "{\n  \"id\": \"507f191e810c19729de860ea\",\n  \"added\": \"2020-12-17T23:13:57.000Z\",\n  \"updated\": \"2020-12-17T23:13:57.000Z\",\n  \"name\": \"Updated project name\",\n  \"status\": \"{{oneOf (array 'active' 'disabled' 'expired' 'to_delete')}}\"\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Return list of projects",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "1db3078a-bfc1-41d1-9c1e-de4f1947739a",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "5e3b6bac-2a97-4e85-bd51-cba3dc2b504d",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "37cd0876-9e7d-4d79-aa79-b152ac54a430",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "c6043946-bb42-45f9-8cd1-06a7bb86cd06",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "d9f01dd5-548a-49a4-a902-2290d245186b",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "403b06f6-dfa2-4516-9350-641b66787a6a",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "2931d146-b4ee-4b6f-a8de-68220cd66dcd",
+                        "documentation": "Delete project by id",
+                        "method": "delete",
+                        "endpoint": "projects/:id",
+                        "responses": [
+                            {
+                                "uuid": "c1307148-1c32-4cf1-aec4-9a609a94ddb7",
+                                "body": "{\n  \"deleted\": true\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Return http status 200 and object {deleted: true} when successful delete project",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "98fac0cb-0baa-4e9c-a6da-09cec03d813c",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "84791069-d3d9-47e5-badd-f2d2b3e485de",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "2f3fc18d-782f-41c5-bc2b-3ce9bff6b875",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "cefbb724-86c9-4824-abc7-adeff1fa1271",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "3a57e9df-0c53-4e9e-af12-93583a90d97d",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "33fe7adb-5134-4f08-89bd-cfe74f1c257f",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "38cdea66-9435-4a49-9fcb-dc49f92af6c2",
+                        "documentation": "Add new urls with params to project.",
+                        "method": "post",
+                        "endpoint": "projects/:id/urls",
+                        "responses": [
+                            {
+                                "uuid": "a1484213-3655-47e8-8158-edc04aab589b",
+                                "body": "[\n  {\n    \"id\": \"507f191e810c19729de860ea\"\n  }\n]",
+                                "latency": 0,
+                                "statusCode": 201,
+                                "label": "Add new url to project",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "5e5d5d42-e85f-4780-ba58-57b497685aa5",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "a8597ef8-5755-4c8b-908f-be49821a51e4",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "b086ffa8-8f29-4de1-a6bd-829b357222cc",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "b9caeff9-91a5-47a9-bd48-abadc61c971c",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "700dc077-1167-41f3-af36-be1bd7ab9463",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "b87d9715-d8a1-46c5-befa-10c626d00776",
+                        "documentation": "Get urls from project",
+                        "method": "get",
+                        "endpoint": "projects/:id/urls",
+                        "responses": [
+                            {
+                                "uuid": "6683c9c2-1668-45fe-b704-0210d53138c2",
+                                "body": "{\n  \"urls\": [\n    {\n      \"id\": \"507f191e810c19729de860ea\",\n      \"url\": \"https://example.com/blog/post-54/\",\n      \"response_http_code\": 200,\n      \"errors_sum\": 3,\n      \"status\": \"{{oneOf (array 'executed' 'waiting_for_execute' 'error')}}\",\n      \"completed_file_url\": \"https://download.webshotapi.com/95e089038ded31a0f5136f4c3f68a880/63347f5d946164a23faca26b78a91e1c/\",\n      \"last_error_info\": \"Page not found 404\",\n      \"last_error_http_code\": 404\n    }\n  ],\n  \"pagination\": {\n    \"next_page\": \"/projects/5534534543/urls/5\",\n    \"prev_page\": \"/projects/5534534543/urls/3\",\n    \"last_page\": \"/projects/5534534543/urls/54\",\n    \"first_page\": \"/projects/5534534543/urls/1\",\n    \"pages\": 54,\n    \"current_page\": 4\n  }\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Get urls list from project",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "e039f5b0-c695-42e0-a72f-d3bfcdbac7ae",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "71d524ad-4cad-4209-89e7-08c359bcd6dd",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "53e6bc48-a449-4272-82cf-f83a724f5ded",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "ac077149-2e15-405e-84d7-638a46c87103",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "7016b49f-bdf4-43f6-9365-2726c3b52d5f",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "c4b4aea0-48d0-42f5-a8fb-85de19375bad",
+                        "documentation": "Get url by id.",
+                        "method": "get",
+                        "endpoint": "projects/:id/urls/:url_id",
+                        "responses": [
+                            {
+                                "uuid": "c970b564-d339-47b4-ae76-a3398f9d1c7c",
+                                "body": "{\n  \"id\": \"507f191e810c19729de860ea\",\n  \"url\": \"https://example.com/blog/post-54/\",\n  \"response_http_code\": 200,\n  \"errors_sum\": 3,\n  \"status\": \"{{oneOf (array 'executed' 'waiting_for_execute' 'error')}}\",\n  \"completed_file_url\": \"https://download.webshotapi.com/95e089038ded31a0f5136f4c3f68a880/63347f5d946164a23faca26b78a91e1c/\",\n  \"last_error_info\": \"Page not found 404\",\n  \"last_error_http_code\": 404,\n  \"params\": {}\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Get url data from project",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "9b9d8482-a27f-4fd9-a25c-7b8f0319228e",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "ffd586da-6db5-487b-8897-4b0517d1530a",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "201e313d-294e-4f8f-b51c-ddb72aeddc46",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "456f2e6c-d590-483f-93c0-1eec5c343854",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "6f453746-5af4-4467-9a98-fbaa17c21303",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "3a6ac331-90c9-48d1-9944-44a86f088c95",
+                        "documentation": "Delete url from project",
+                        "method": "delete",
+                        "endpoint": "projects/:id/urls/:url_id",
+                        "responses": [
+                            {
+                                "uuid": "8888c844-8e5b-4f2f-89c6-b0b5ddffe6dd",
+                                "body": "{\n  \"deleted\": true\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Delete url from project",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "8b6e3c35-cef5-487b-84b5-3dc61eee679d",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "16503a76-1d2f-4eb9-8ae9-a7e07c0a6d8f",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "1942e3cb-79cd-46f6-b50f-48277e89e13b",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "ef3eaf04-6dae-4348-87eb-9a39fc0c8f69",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "632c7c24-a9be-4133-9616-668f3f5d0619",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "ea9890e7-666d-4e7e-9d8f-200c74b8d8b6",
+                        "documentation": "Process url again by our robot",
+                        "method": "post",
+                        "endpoint": "projects/:id/urls/:url_id/process_again",
+                        "responses": [
+                            {
+                                "uuid": "166f8c9d-a297-41b2-aca0-3c122a3f811e",
+                                "body": "{\n  \"id\": \"507f191e810c19729de860ea\",\n  \"url\": \"https://example.com/blog/post-54/\",\n  \"response_http_code\": 200,\n  \"errors_sum\": 3,\n  \"status\": \"{{oneOf (array 'executed' 'waiting_for_execute' 'error')}}\",\n  \"completed_file_url\": \"https://download.webshotapi.com/95e089038ded31a0f5136f4c3f68a880/63347f5d946164a23faca26b78a91e1c/\",\n  \"last_error_info\": \"Page not found 404\",\n  \"last_error_http_code\": 404,\n  \"params\": {}\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Process url again",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "ab650a06-21e0-45ff-b2d2-76fd42153a6f",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "9526bcaf-b333-46b6-89cc-6c33a0c98ee8",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Access Denied",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "5a945fa9-16ff-4366-a579-ba62a0c04128",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "39139635-204f-4dd3-8a22-7d4feeef043f",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "4b741426-3370-4568-a59a-a40a1dde67b6",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "e7e0f26c-c7ef-49a6-b1bd-d54d926ee29f",
+                        "documentation": "POST Take website screenshot, save as JPG, PNG, PDF or JSON",
+                        "method": "post",
+                        "endpoint": "screenshot/:response_type",
+                        "responses": [
+                            {
+                                "uuid": "e8db2e4d-e6ea-4ba5-90ef-04e2a5c18e58",
+                                "body": "{\n  \"status_code\": 200,\n  \"html\": \"<!doctype html><html lang='en' dir='ltr'><head><base hr...\",\n  \"text\": \"Welcome in our page\\\\nToday is Monday..\",\n  \"screenshot_url\": \"https://api.webshotapi.com/v1/screenshot/?token=....&width=1920&height=960\",\n  \"selectors\": [\n    {\n      \"class\": \".col-12 col-lg-12\",\n      \"id\": \"price\",\n      \"itemprop\": \"title\",\n      \"x\": 434.8,\n      \"y\": 343.4,\n      \"w\": 434,\n      \"h\": 43,\n      \"xpath\": \"/html/body/div[1]/div[2]/div/div[2]/ul/li[5]/ul/li[2]\",\n      \"style\": {\n        \"visibility\": \"visible\",\n        \"display\": \"block\",\n        \"fontWeight\": \"400\",\n        \"backgroundImage\": \"none\",\n        \"cursor\": \"pointer\",\n        \"fontSize\": \"22px\",\n        \"color\": \"rgb(255, 255, 255)\",\n        \"position\": \"absolute\",\n        \"textDecoration\": \"none solid rgb(255, 255, 255)\",\n        \"textDecorationLine\": \"none\",\n        \"backgroundColor\": \"rgba(0, 255, 255, 0)\"\n      }\n    }\n  ],\n  \"words\": [\n    {\n      \"xpath\": \"/html/body/div[1]/div[2]/div/div[2]/ul/li[5]/a\",\n      \"word\": \"Hello\",\n      \"word_index\": 2,\n      \"offset\": 14,\n      \"position\": {\n        \"x\": 434.8,\n        \"y\": 343.4,\n        \"w\": 434,\n        \"h\": 43\n      }\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Response completed. Response format depends of Accept request header",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept-Encoding",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Request-Status-Code",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Is-Cache",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Limit",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Remaining",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Date",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Max-Concurrent-Requests",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "header",
+                                        "modifier": "Accept",
+                                        "value": "application/json",
+                                        "operator": "regex"
+                                    }
+                                ],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "8e9d33fc-2567-4628-ba76-b8a5c54c46aa",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "5a92fe1f-6da9-4a5b-a97b-66445ed8bbb6",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "24ad5492-cc64-468b-9b7f-55f4b58df62c",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 402,
+                                "label": "Your account has no more requests. Request exceeded. Please buy bigger plan",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "33ffe9ed-cdc6-4931-9134-3525405961f6",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Cant download page, file robots.txt in requested server block our robot",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "84dd593f-93e8-4e4d-9752-1ccc8021e76c",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests or Request limit for domain",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "2cd4937b-b264-4394-98c2-67ab5edf18d7",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "5cc4ceaf-ee2d-4e57-b262-5c6127033735",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "8323f5ba-e43f-4fb0-be03-cad611996c32",
+                                "body": "{}",
+                                "latency": 2000,
+                                "statusCode": 200,
+                                "label": "Response jpg image",
+                                "headers": [],
+                                "filePath": "./screenshot-data/example.jpeg",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "header",
+                                        "modifier": "Accept",
+                                        "value": "image/jpeg",
+                                        "operator": "equals"
+                                    }
+                                ],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "d7da248d-49ad-41d8-b0e0-2deb476f086b",
+                                "body": "{}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "response pdf as output",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/pdf"
+                                    }
+                                ],
+                                "filePath": "./screenshot-data/example.pdf",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "header",
+                                        "modifier": "Accept",
+                                        "value": "application/pdf",
+                                        "operator": "regex"
+                                    }
+                                ],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "f48343e9-7b7f-4bb4-8bc4-1174ee751d8d",
+                                "body": "{}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Response PNG as output image",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "image/png"
+                                    }
+                                ],
+                                "filePath": "./screenshot-data/example.png",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "header",
+                                        "modifier": "Accept",
+                                        "value": "image/png",
+                                        "operator": "regex"
+                                    }
+                                ],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "3b6fc965-ac84-469e-8e96-a5ce29f9b77f",
+                        "documentation": "GET Take website screenshot, save as JPG, PNG, PDF or JSON",
+                        "method": "get",
+                        "endpoint": "screenshot/:response_type",
+                        "responses": [
+                            {
+                                "uuid": "36f4c090-fec1-47af-954b-97e6128fdb50",
+                                "body": "{\n  \"status_code\": 200,\n  \"html\": \"<!doctype html><html lang='en' dir='ltr'><head><base hr...\",\n  \"text\": \"Welcome in our page\\\\nToday is Monday..\",\n  \"screenshot_url\": \"https://api.webshotapi.com/v1/screenshot/?token=....&width=1920&height=960\",\n  \"selectors\": [\n    {\n      \"class\": \".col-12 col-lg-12\",\n      \"id\": \"price\",\n      \"itemprop\": \"title\",\n      \"x\": 434.8,\n      \"y\": 343.4,\n      \"w\": 434,\n      \"h\": 43,\n      \"xpath\": \"/html/body/div[1]/div[2]/div/div[2]/ul/li[5]/ul/li[2]\",\n      \"style\": {\n        \"visibility\": \"visible\",\n        \"display\": \"block\",\n        \"fontWeight\": \"400\",\n        \"backgroundImage\": \"none\",\n        \"cursor\": \"pointer\",\n        \"fontSize\": \"22px\",\n        \"color\": \"rgb(255, 255, 255)\",\n        \"position\": \"absolute\",\n        \"textDecoration\": \"none solid rgb(255, 255, 255)\",\n        \"textDecorationLine\": \"none\",\n        \"backgroundColor\": \"rgba(0, 255, 255, 0)\"\n      }\n    }\n  ],\n  \"words\": [\n    {\n      \"xpath\": \"/html/body/div[1]/div[2]/div/div[2]/ul/li[5]/a\",\n      \"word\": \"Hello\",\n      \"word_index\": 2,\n      \"offset\": 14,\n      \"position\": {\n        \"x\": 434.8,\n        \"y\": 343.4,\n        \"w\": 434,\n        \"h\": 43\n      }\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Ok response",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept-Encoding",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Request-Status-Code",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Is-Cache",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Limit",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Remaining",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Date",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Max-Concurrent-Requests",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "8519f242-3135-47f1-81ce-eda858ff98dd",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "f2e719e5-29fa-4526-ba86-a3f0dce3fbb8",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "51a0194b-25c9-492c-ac4a-2a132c46f63b",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 402,
+                                "label": "Your account has no more requests. Request exceeded. Please buy bigger plan",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "197162ff-70a3-4595-a4bc-f159992c7531",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "Cant download page, file robots.txt in requested server block our robot",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "1465395a-7369-4ac7-8e13-dee604140a70",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests or Request limit for domain",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "83b54c3e-b5e4-4866-b2cb-46e428c3acd5",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "dfe8c5bf-98d3-4c56-be4c-58b50a37d5db",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "8c2ce97a-beb1-4738-8465-b5d91ba0974e",
+                        "documentation": "POST Extract selectors, words and styles",
+                        "method": "post",
+                        "endpoint": "extract",
+                        "responses": [
+                            {
+                                "uuid": "120f6b0e-1379-4483-bc02-a3820e2a3f57",
+                                "body": "{\n  \"status_code\": 200,\n  \"html\": \"<!doctype html><html lang='en' dir='ltr'><head><base hr...\",\n  \"text\": \"Welcome in our page\\\\nToday is Monday..\",\n  \"screenshot_url\": \"https://api.webshotapi.com/v1/screenshot/?token=....&width=1920&height=960\",\n  \"selectors\": [\n    {\n      \"class\": \".col-12 col-lg-12\",\n      \"id\": \"price\",\n      \"itemprop\": \"title\",\n      \"x\": 434.8,\n      \"y\": 343.4,\n      \"w\": 434,\n      \"h\": 43,\n      \"xpath\": \"/html/body/div[1]/div[2]/div/div[2]/ul/li[5]/ul/li[2]\",\n      \"style\": {\n        \"visibility\": \"visible\",\n        \"display\": \"block\",\n        \"fontWeight\": \"400\",\n        \"backgroundImage\": \"none\",\n        \"cursor\": \"pointer\",\n        \"fontSize\": \"22px\",\n        \"color\": \"rgb(255, 255, 255)\",\n        \"position\": \"absolute\",\n        \"textDecoration\": \"none solid rgb(255, 255, 255)\",\n        \"textDecorationLine\": \"none\",\n        \"backgroundColor\": \"rgba(0, 255, 255, 0)\"\n      }\n    }\n  ],\n  \"words\": [\n    {\n      \"xpath\": \"/html/body/div[1]/div[2]/div/div[2]/ul/li[5]/a\",\n      \"word\": \"Hello\",\n      \"word_index\": 2,\n      \"offset\": 14,\n      \"position\": {\n        \"x\": 434.8,\n        \"y\": 343.4,\n        \"w\": 434,\n        \"h\": 43\n      }\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Response completed",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept-Encoding",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Request-Status-Code",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Is-Cache",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Limit",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Remaining",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Date",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Max-Concurrent-Requests",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "335d47ac-ee0c-4958-959a-2d9dcf0c53f2",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "97bdd5fb-8353-4e25-b11e-f47918bdf0c6",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "d61b66d2-a08b-4c2c-8a05-66b974fa9108",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 402,
+                                "label": "Your account has no more requests. Request exceeded. Please buy bigger plan",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "8a911e8c-5d8e-4697-8195-25c7ddf97349",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "ant download page, file robots.txt in requested server block our robot",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "04f0f9cb-966e-4d77-99ac-91c4fab206f9",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests or Request limit for domain",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "f9a25bea-54a9-4714-af22-089a7814b17f",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "5923c7ce-1ac5-487c-8bd5-3a815769191f",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "b2741d33-7b8b-4a3b-9992-6e091db222f6",
+                        "documentation": "POST Extract selectors, words and styles",
+                        "method": "get",
+                        "endpoint": "extract",
+                        "responses": [
+                            {
+                                "uuid": "42c69493-3665-460a-a89c-f2fbbf788e1c",
+                                "body": "{\n  \"status_code\": 200,\n  \"html\": \"<!doctype html><html lang='en' dir='ltr'><head><base hr...\",\n  \"text\": \"Welcome in our page\\\\nToday is Monday..\",\n  \"screenshot_url\": \"https://api.webshotapi.com/v1/screenshot/?token=....&width=1920&height=960\",\n  \"selectors\": [\n    {\n      \"class\": \".col-12 col-lg-12\",\n      \"id\": \"price\",\n      \"itemprop\": \"title\",\n      \"x\": 434.8,\n      \"y\": 343.4,\n      \"w\": 434,\n      \"h\": 43,\n      \"xpath\": \"/html/body/div[1]/div[2]/div/div[2]/ul/li[5]/ul/li[2]\",\n      \"style\": {\n        \"visibility\": \"visible\",\n        \"display\": \"block\",\n        \"fontWeight\": \"400\",\n        \"backgroundImage\": \"none\",\n        \"cursor\": \"pointer\",\n        \"fontSize\": \"22px\",\n        \"color\": \"rgb(255, 255, 255)\",\n        \"position\": \"absolute\",\n        \"textDecoration\": \"none solid rgb(255, 255, 255)\",\n        \"textDecorationLine\": \"none\",\n        \"backgroundColor\": \"rgba(0, 255, 255, 0)\"\n      }\n    }\n  ],\n  \"words\": [\n    {\n      \"xpath\": \"/html/body/div[1]/div[2]/div/div[2]/ul/li[5]/a\",\n      \"word\": \"Hello\",\n      \"word_index\": 2,\n      \"offset\": 14,\n      \"position\": {\n        \"x\": 434.8,\n        \"y\": 343.4,\n        \"w\": 434,\n        \"h\": 43\n      }\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "Ok response",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept-Encoding",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Request-Status-Code",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Is-Cache",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Limit",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Remaining",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Quota-Date",
+                                        "value": ""
+                                    },
+                                    {
+                                        "key": "X-Max-Concurrent-Requests",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "29d6c97a-aba5-4dab-b26a-336ec957029d",
+                                "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"link must be a string value\"\n  ],\n  \"error\": \"Bad Request\"\n}",
+                                "latency": 0,
+                                "statusCode": 400,
+                                "label": "Bad request error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "46c9930d-20e9-4aca-8b3f-668c3581d4ec",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 401,
+                                "label": "Access denied. Wrong token or account is disabled",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "e16edcb2-73ba-48e9-99f1-10b5642543c3",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 402,
+                                "label": "Your account has no more requests. Request exceeded. Please buy bigger plan",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "1c728e26-9eb8-478e-aef8-2b38948048c1",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 403,
+                                "label": "ant download page, file robots.txt in requested server block our robot",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "d524a6a2-4b6c-4c6d-a0a8-e1f081b0c08d",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 429,
+                                "label": "Too many requests or Request limit for domain",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "9d3671a9-4d64-4b4d-9f87-36f6ff6be0a7",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 500,
+                                "label": "Internal server error",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            },
+                            {
+                                "uuid": "fbce7e7c-da16-4f0e-bec6-c3f893206b80",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": 503,
+                                "label": "Server Maintenance or Overload",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "proxyRemovePrefix": false,
+                "tlsOptions": {
+                    "enabled": false,
+                    "type": "CERT",
+                    "pfxPath": "",
+                    "certPath": "",
+                    "keyPath": "",
+                    "caPath": "",
+                    "passphrase": ""
+                },
+                "cors": true,
+                "headers": [],
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}
