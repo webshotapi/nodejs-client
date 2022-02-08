@@ -3,7 +3,7 @@ import {
   ScreenshotType,
 } from "../types/screenshot.type";
 import { Params } from "../types";
-import { ExtractResponse } from "../types/extract.response";
+
 import {
   ClientInterface,
   Request,

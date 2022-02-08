@@ -68,6 +68,7 @@ describe("Test create Project", () => {
           "https://example.com/blog/43",
           "https://example.com/page/sdff",
         ],
+        command: "screenshot",
         params: {
           ads: false,
           extract_html: true,
@@ -84,6 +85,7 @@ describe("Test create Project", () => {
         "https://example.com/blog/43",
         "https://example.com/page/sdff",
       ],
+      command: "screenshot",
       params: {
         ads: false,
         extract_html: true,
@@ -154,5 +156,5 @@ describe("Test create Project", () => {
     expect(response.status()).toBe(200);
     expect(fs.existsSync(savePath)).toBe(true);
     expect(fs.statSync(savePath).size).toBeGreaterThan(10240);
-  });
+  },15000);
 });
