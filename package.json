@@ -1,6 +1,7 @@
 {
   "name": "@webshotapi/client",
-  "version": "2.0.1",
+  "version": "2.0.2",
+  "description": "Take screenshot and save image in JPG, PNG, PDF. You can also extract selectors for all HTML elements with coordinates and css styles after browser rendering. Remove cookies popup before take screenshot",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
@@ -17,6 +18,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "generate_model": "docker run --rm -v $PWD/src/models:/local openapitools/openapi-generator-cli generate --global-property models -i /local/api-json.json -g typescript -o /local/"
   },
+  "homepage": "https://webshotapi.com",
   "dependencies": {
     "axios": "^1.6.7",
     "rest-api-client-framework": "^1.0.7"
