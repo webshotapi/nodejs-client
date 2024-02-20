@@ -21,12 +21,13 @@ yarn add @webshotapi/client
 
 # Remove cookies popup before take sceenshot
 ![Remove cookies before take screenshot](https://raw.githubusercontent.com/webshotapi/webshotapi-website-screenshot-php-client/6681d3d38ea13391a30b2e43b8c37191e2d41bef/images/remove-cookies-before-take-screenshot.png)
+
 Utilize an innovative AI algorithm to seamlessly eliminate the obstructive cookies popup before capturing a screenshot. [Read more](http://webshotapi.com/blog/remove-cookies-before-take-screenshot/)
 
 
 ## API KEY
 Api key you can generate after register.
-[https://webshotapi.com/dashboard/api/](https://webshotapi.com/dashboard/api/)
+[https://dashboard.webshotapi.com/api_keys](https://dashboard.webshotapi.com/api_keys)
 
 ## Usage
 
@@ -35,10 +36,10 @@ Api key you can generate after register.
 const { Client } = require('webshotapi');
 
 //Image download
-const TOKEN = "YOUR TOKEN HERE";
+const API_KEY = "YOUR TOKEN HERE";
 (async()=>{
     try{
-        const client = new Client(TOKEN);
+        const client = new Client(API_KEY);
         const result = await client.screenshot('https://www.example.com', 'jpg', {
             remove_modals:1,
             width: 1920,
@@ -59,10 +60,10 @@ You can covert your html page to invoice in PDF.
 const { Client } = require('webshotapi');
 
 //Image download
-const TOKEN = "YOUR TOKEN HERE";
+const API_KEY = "YOUR TOKEN HERE";
 (async()=>{
     try{
-        const client = new Client(TOKEN);
+        const client = new Client(API_KEY);
         const result = await client.pdf('https://www.example.com', {
             remove_modals:1,
             'width': 1920,
@@ -85,10 +86,10 @@ Unique software to extract all selectors for HTML elements from website with css
 const { Client } = require('webshotapi');
 
 //Image download
-const TOKEN = "YOUR TOKEN HERE";
+const API_KEY = "YOUR TOKEN HERE";
 (async()=>{
     try{
-        const client = new Client(TOKEN);
+        const client = new Client(API_KEY);
         const result = await client.extract('https://www.example.com', {
             "remove_modals": 1,
             "ads": 1,
@@ -167,6 +168,12 @@ const TOKEN = "YOUR TOKEN HERE";
 ## API docs
 Full documentation about our api you can find in this website [API DOCS](https://webshotapi.com/docs/)
 
+## Tests
+```sh
+export WEBSHOTAPI_ENDPOINT=https://api.webshotapi.com/v1
+export WEBSHOTAPI_TEST_API_KEY=0909d85adda21539ecec77d9da67c7d40ac5bb6a652fa240cdc1acc6e411139e # This is example api key ;)
+yarn test
+```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

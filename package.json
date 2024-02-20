@@ -4,6 +4,7 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc",
     "test": "jest",
     "docs:gen": "typedoc src/index.ts",
@@ -16,7 +17,8 @@
     "generate_model": "docker run --rm -v $PWD/src/models:/local openapitools/openapi-generator-cli generate --global-property models -i /local/api-json.json -g typescript -o /local/"
   },
   "dependencies": {
-    "axios": "^1.6.7"
+    "axios": "^1.6.7",
+    "rest-api-client-framework": "^1.0.7"
   },
   "files": [
     "dist"

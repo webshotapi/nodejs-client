@@ -2,7 +2,7 @@
 If you want to run api-server client in development mode set env
 
 ```sh
-export WEBSHOTAPI_ENV=dev
+export WEBSHOTAPI_ENDPOINT=dev
 ```
 Then client will connect with localhost:3000. With this host you can mock original server.
 
