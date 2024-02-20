@@ -41,9 +41,9 @@ const API_KEY = "YOUR TOKEN HERE";
     try{
         const client = new Client(API_KEY);
         const result = await client.screenshot('https://www.example.com', 'jpg', {
-            remove_modals:1,
+            remove_modals: true, // Remove cookies popup
             width: 1920,
-            no_cache: 1
+            no_cache: 1 // Do not return response file from cache
         });
         
         //save screenshot to file
@@ -65,9 +65,9 @@ const API_KEY = "YOUR TOKEN HERE";
     try{
         const client = new Client(API_KEY);
         const result = await client.pdf('https://www.example.com', {
-            remove_modals:1,
-            'width': 1920,
-            'no_cache': 1
+            remove_modals: true,
+            width: 1920,
+            no_cache: true
         });
         
         //save screenshot to file
