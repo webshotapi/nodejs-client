@@ -3,6 +3,7 @@
   "version": "2.0.1",
   "main": "dist/index.js",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",
