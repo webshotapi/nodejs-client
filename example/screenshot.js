@@ -7,6 +7,7 @@ const Config = require("./config");
     const result = await client.screenshot("https://www.example.com", "jpg", {
       remove_modals: 1,
       width: 1920,
+      no_cache: true,
       no_cache: 1,
     });
 

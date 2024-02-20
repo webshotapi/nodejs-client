@@ -1,4 +1,5 @@
 import { ScreenshotType } from "./screenshot.type";
+import {ResponseSaveCloud} from "./responseSaveCloud";
 
 export type Params = {
   /** Link to website
@@ -6,7 +7,7 @@ export type Params = {
    *
    * @type string
    */
-  link: string;
+  url: string;
 
   /**
    * Select screenshot image output format [jpg,pdf,png]
@@ -20,6 +21,23 @@ export type Params = {
    * @default false
    */
   remove_modals?: boolean;
+
+  /**
+   * Use premium proxies to make the request harder to block. Useful when your request is getting blocked. Cost 5 credits per request.
+   *
+   * @type boolean
+   * @default false
+   */
+  premium_proxy?: boolean;
+
+  /**
+   * Some content is specific to a region. In these cases, you may want to make your request from a given country. Geotargeting cost additional 1 credit
+   * Example: 'us' for USA, 'fr' for France etc.
+   * @type string
+   * @default ''
+   * @example 'us'
+   */
+  geotargeting?: string;
 
   /**
    * Remove all ads from website.
@@ -170,6 +188,19 @@ export type Params = {
   extract_html?: boolean;
 
   /**
+   * Export all words from the page with the positions (x, y, width, height) for each word. Thanks to this you can build a map of words placed on the page.
+   *
+   * @type boolean
+   */
+  extract_words?: boolean;
+
+  /**
+   * Additionally, for each HTML element you can export its css styles after rendering and loading all scripts. https://webshotapi.com/blog/how-to-scraper-css-styles-from-website/ for 0 - dont extract words. 1 - Extract primary css properties for elements, 2 - Extract all css properties for elements
+   * @type number
+   */
+  extract_style?: number;
+
+  /**
    * Take a screenshot only of the element on the page that has the CSS selector. This is a useful option if you want to take a photo of, for example, a table on the page.
    * example: div .price
    *
@@ -197,4 +228,5 @@ export type Params = {
    * @type string
    */
   injection_js?: string;
-};
+
+} & ResponseSaveCloud;

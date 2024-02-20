@@ -19,6 +19,10 @@ or
 yarn add @webshotapi/client
 ```
 
+# Remove cookies popup before take sceenshot
+![Remove cookies before take screenshot](https://raw.githubusercontent.com/webshotapi/webshotapi-website-screenshot-php-client/6681d3d38ea13391a30b2e43b8c37191e2d41bef/images/remove-cookies-before-take-screenshot.png)
+Utilize an innovative AI algorithm to seamlessly eliminate the obstructive cookies popup before capturing a screenshot. [Read more](http://webshotapi.com/blog/remove-cookies-before-take-screenshot/)
+
 
 ## API KEY
 Api key you can generate after register.

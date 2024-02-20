@@ -8,9 +8,9 @@ describe("Test create Project", () => {
   let client;
 
   beforeEach(() => {
-    client = new Client(
-        process.env.WEBSHOTAPI_TEST_API_KEY
-    );
+    client = new Client({
+      api_key: process.env.WEBSHOTAPI_TEST_API_KEY,
+    });
   });
 
   it("Create project", async () => {
@@ -146,15 +146,22 @@ describe("Test create Project", () => {
 
   it("Download url", async () => {
     const savePath = "/tmp/test.pdf";
-    const response = await client
-      .projectUrl()
-      .download(
-        "https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf",
-        savePath
+    const projectUrl = await client.projectUrl()
+    let response;
+
+    try{
+      response = await projectUrl.download(
+          "https://httpbin.org/image/jpeg",
+          savePath
       );
+    }catch(err){
+      console.log(err);
+    }
+
 
     expect(response.status()).toBe(200);
     expect(fs.existsSync(savePath)).toBe(true);
     expect(fs.statSync(savePath).size).toBeGreaterThan(10240);
+
   },15000);
 });

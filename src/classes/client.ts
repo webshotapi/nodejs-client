@@ -9,27 +9,36 @@ import {
   Request,
   ProjectUrl,
   Projects,
-  Response,
   executor,
-  SaveUrlDto,
   ConfigType,
+  convertAxiosResponse,
   ResponseInterface,
 } from "rest-api-client-framework";
 import { SaveProjectUrlWebshotapiDto } from "../types/saveUrl.dto";
+import { WebshotapiClientException } from "../exceptions";
 
-export type ClientType = {
-  api_key?: string;
-};
+export type ClientConfig = {
+  api_key?: string
+  endpoint?: string
+  timeout?: number
+  timeout_connection?: number;
+}
 
 export class Client implements ClientInterface {
-  private api_key: string;
+
+  private data: ClientConfig;
 
   /**
    * Contructor with your API KEY
    * @param api_key
    */
-  constructor(api_key: string) {
-    this.setApiKey(api_key);
+  constructor( data: ClientConfig) {
+      this.data = {
+        timeout: 32000,
+        endpoint: process.env.WEBSHOTAPI_ENDPOINT ?? "https://api.webshotapi.com/v1",
+        api_key: process.env.WEBSHOTAPI_KEY,
+        ...data,
+      }
   }
 
   /**
@@ -39,9 +48,9 @@ export class Client implements ClientInterface {
    */
   async pdf(
     url: string,
-    params: Params = { link: "" }
+    params: Params = { url: "" }
   ): Promise<ResponseInterface> {
-    return this.screenshot(url, ScreenshotType.PDF, params);
+    return await this.screenshot(url, ScreenshotType.PDF, params);
   }
 
   /**
@@ -53,25 +62,31 @@ export class Client implements ClientInterface {
   async screenshot(
     url: string,
     file_type: ScreenshotType,
-    params: Params = { link: "" }
+    params: Params = {
+      url: ""
+    }
   ): Promise<ResponseInterface> {
-    const request = this.requestFactory();
-    request.addHeaders({
-      "Accept-Encoding": "gzip",
-      Accept: `${ConvertTypeToMimeType(file_type)}`,
-    });
+    try {
+      const request = this.requestFactory();
+      request.addHeaders({
+        "Accept-Encoding": "gzip",
+        Accept: `${ConvertTypeToMimeType(file_type)}`,
+      });
 
-    params.link = url;
-    params.image_type = file_type;
+      params.url = url;
+      params.image_type = file_type;
 
-    const response = await request.post(`/screenshot/image`, params);
+      const response = await request.post(`/screenshot/image`, params);
 
-    if (response.status !== 200)
-      throw new Error(
-        `Cant download screenshot file from server status code: ${response.status}`
-      );
+      if (response.status !== 200)
+        throw new Error(
+          `Cant download screenshot file from server status code: ${response.status}`
+        );
 
-    return new Response(response);
+      return convertAxiosResponse(response);
+    } catch (err) {
+      throw new WebshotapiClientException(err);
+    }
   }
 
   /**
@@ -82,36 +97,44 @@ export class Client implements ClientInterface {
    */
   async extract(
     url: string,
-    params: Params = { link: "" }
+    params: Params = { url: "" }
   ): Promise<ResponseInterface> {
-    const request = this.requestFactory();
-    request.addHeaders({
-      "Accept-Encoding": "gzip",
-      "Content-Type": "application/json",
-    });
+    try {
+      const request = this.requestFactory();
+      request.addHeaders({
+        "Accept-Encoding": "gzip",
+        "Content-Type": "application/json",
+      });
 
-    params.link = url;
-    const response = await request.post(`/extract`, params);
-    if (response.status !== 200)
-      throw new Error(
-        `Cant download json file from server status code: ${response.status}`
-      );
+      params.url = url;
+      const response = await request.post(`/extract`, params);
+      if (response.status !== 200)
+        throw new Error(
+            `Cant download json file from server status code: ${response.status}`
+        );
 
-    return new Response(response);
+      return convertAxiosResponse(response);
+    } catch (err) {
+      throw new WebshotapiClientException(err);
+    }
   }
 
   /**
    * Download your account plan info.
    */
   async info(): Promise<ResponseInterface> {
-    const request = this.requestFactory();
-    const response = await request.get(`/info`);
-    if (response.status !== 200)
-      throw new Error(
-        `Cant download json file from server status code: ${response.status}`
-      );
+    try {
+      const request = this.requestFactory();
+      const response = await request.get(`/info`);
+      if (response.status !== 200)
+        throw new Error(
+            `Cant download json file from server status code: ${response.status}`
+        );
 
-    return new Response(response);
+      return convertAxiosResponse(response);
+    } catch (err) {
+      throw new WebshotapiClientException(err);
+    }
   }
 
   protected requestFactory(): Request {
@@ -150,11 +173,9 @@ export class Client implements ClientInterface {
 
   config(): ConfigType {
     return {
-      endpoint:
-        process.env.WEBSHOTAPI_ENV == "dev"
-          ? "http://localhost:3000"
-          : "https://api.webshotapi.com/v1",
-      timeout: 30000,
+      endpoint: this.data.endpoint,
+      timeout: this.data.timeout,
+      timeout_connection: this.data.timeout_connection
     };
   }
 
@@ -163,10 +184,10 @@ export class Client implements ClientInterface {
    * @param api_key
    */
   setApiKey(api_key: string) {
-    this.api_key = api_key;
+    this.data.api_key = api_key;
   }
 
   setAuthentication(request: Request): void {
-    request.addHeaders({ authorization: `Bearer ${this.api_key}` });
+    request.addHeaders({ authorization: `Bearer ${this.data.api_key}` });
   }
 }
