@@ -1,13 +1,12 @@
 # WebShotApi.com API client for NodeJS/Typescript
 
-Take screenshot and save image in JPG, PNG, PDF. You can also extract selectors for all HTML elements with coordinates and css styles after browser rendering.
-In our api you can create project and send all you urls to queue. Our server will do all the work for you
+Capture a screenshot and save the image in formats like JPG, PNG, or PDF. Additionally, you have the capability to retrieve selectors for every HTML element, complete with coordinates and CSS styles following browser rendering. Utilize our API to establish a project and submit your URLs to the queue. Our server will handle all the necessary tasks on your behalf.
 
 Full documentation about our api you can find in this website [Website screenshot API DOCS](https://webshotapi.com/docs/)
 
 ## Installation
 
-Use the package manager [NPM](https://www.npmjs.com/package/webshotapi) to install our client in nodejs.
+Use the package manager [NPM](https://www.npmjs.com/package/@webshotapi/client) to install our client in nodejs.
 
 ```bash
 npm install @webshotapi/client
