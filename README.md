@@ -119,43 +119,77 @@ const API_KEY = "YOUR TOKEN HERE";
 {
   "selectors": [
     {
-      "xpath": "/html/body",
-      "x": 1212,
-      "y": 17,
-      "w": 117,
-      "h": 25,
+      "xpath": "/html[1]",
+      "css_selector": "html",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 413,
       "style": {
         "visibility": "visible",
-        "display": "inline",
+        "display": "block",
         "fontWeight": "400",
         "backgroundImage": "none",
-        "cursor": "pointer",
-        "fontSize": "22px",
-        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "cursor": "auto",
+        "fontSize": "16px",
+        "color": "rgb(0, 0, 0)",
         "position": "static",
-        "textDecoration": "none solid rgb(255, 255, 255)",
-        "text-decoration-line": "none",
-        "backgroundColor": "rgba(0, 0, 0, 0)"
+        "textDecoration": "none solid rgb(0, 0, 0)",
+        "textDecorationLine": "none",
+        "textDecorationColor": "rgb(0, 0, 0)",
+        "textDecorationStyle": "solid",
+        "textDecorationThickness": "auto",
+        "bottom": "auto",
+        "top": "auto",
+        "left": "auto",
+        "right": "auto",
+        "zIndex": "auto",
+        "opacity": "1",
+        "backgroundRepeat": "repeat",
+        "borderWidth": "0px",
+        "textAlign": "start",
+        "marginLeft": "0px",
+        "marginRight": "0px",
+        "marginTop": "0px",
+        "marginBottom": "0px",
+        "paddingLeft": "0px",
+        "paddingRight": "0px",
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "overflow": "visible",
+        "textIndent": "0px",
+        "textTransform": "none",
+        "letterSpacing": "normal",
+        "fontFamily": "\"Times New Roman\""
       },
-      "class": ".col-12 col-sm-12",
-      "id": "#price",
-      "itemprop": "price"
+      "attributes": {}
     }
   ],
   "words": [
     {
-      "xpath": "/html/body/div[1]/div[2]/div/div[2]/ul/li[5]/a",
-      "word": "Welcome",
+      "word": "permission.",
       "position": {
-        "x": 434.8,
-        "y": 343.4,
-        "w": 434,
-        "h": 43
+        "x": 660,
+        "y": 231,
+        "w": 92,
+        "h": 19
       },
-      "word_index": 2,
-      "offset": 14
+      "word_index": 26,
+      "xpath": "/html[1]/body[1]/div[1]/p[1]",
+      "offset": 145
     }
   ],
+  "page_properties": {
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "document": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
   "html": "<!doctype html><html lang='en' dir='ltr'><head><base hr...",
   "text": "Welcome in our page\nToday is Monday...",
   "screenshot_url": "https://api.webshotapi.com/v1/screenshot/?token=....&width=1920&height=960",
