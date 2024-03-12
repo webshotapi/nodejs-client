@@ -1,0 +1,57 @@
+const { Client } = require("@webshotapi/client");
+const Config = require("./config");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+
+const generateSignedUrl = async(key, bucket_name) => {
+  const awsClient = new S3Client({
+    region: process.env.AWS_REGION,
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    }
+  });
+
+  const command = new PutObjectCommand({
+    Bucket: bucket_name,
+    Key: key //uniquer file name. Our server will have access only for upload result file with that file name.
+  });
+
+  const url = await getSignedUrl(
+    awsClient,
+    command,
+    { expiresIn: 120 } // Specify the expiration time for the signed URL in seconds. In this example, the link will expire after 120 seconds, ensuring that no one can upload files to your S3 bucket beyond this timeframe.
+  );
+  return url;
+}
+
+(async () => {
+
+  const aws_signed_url = await generateSignedUrl(
+    'test-file.jpg',
+    'test-bucket'
+  );
+
+  try {
+    const client = new Client(Config.API_KEY);
+    const result = await client.screenshot(
+      "https://www.example.com",
+      "jpg",
+      {
+        remove_modals: 1,
+        width: 1920,
+        no_cache: true,
+        no_cache: 1,
+
+        response_save_cloud: "aws",
+        s3_signed_url: aws_signed_url,
+      }
+    );
+
+    console.log(result.json());
+
+  } catch (err) {
+    console.log(`Error: ${err.message}`);
+    console.log(err.stack);
+  }
+})();
