@@ -18,27 +18,27 @@ import { SaveProjectUrlWebshotapiDto } from "../types/saveUrl.dto";
 import { WebshotapiClientException } from "../exceptions";
 
 export type ClientConfig = {
-  api_key?: string
-  endpoint?: string
-  timeout?: number
+  api_key?: string;
+  endpoint?: string;
+  timeout?: number;
   timeout_connection?: number;
-}
+};
 
 export class Client implements ClientInterface {
-
   private data: ClientConfig;
 
   /**
    * Contructor with your API KEY
    * @param api_key
    */
-  constructor( data: ClientConfig) {
-      this.data = {
-        timeout: 32000,
-        endpoint: process.env.WEBSHOTAPI_ENDPOINT ?? "https://api.webshotapi.com/v1",
-        api_key: process.env.WEBSHOTAPI_KEY,
-        ...data,
-      }
+  constructor(data: ClientConfig) {
+    this.data = {
+      timeout: 32000,
+      endpoint:
+        process.env.WEBSHOTAPI_ENDPOINT ?? "https://api.webshotapi.com/v1",
+      api_key: process.env.WEBSHOTAPI_KEY,
+      ...data,
+    };
   }
 
   /**
@@ -48,7 +48,7 @@ export class Client implements ClientInterface {
    */
   async pdf(
     url: string,
-    params: Params = { url: "" }
+    params: Params = { url: "" },
   ): Promise<ResponseInterface> {
     return await this.screenshot(url, ScreenshotType.PDF, params);
   }
@@ -63,8 +63,8 @@ export class Client implements ClientInterface {
     url: string,
     file_type: ScreenshotType,
     params: Params = {
-      url: ""
-    }
+      url: "",
+    },
   ): Promise<ResponseInterface> {
     try {
       const request = this.requestFactory();
@@ -80,7 +80,7 @@ export class Client implements ClientInterface {
 
       if (response.status !== 200)
         throw new Error(
-          `Cant download screenshot file from server status code: ${response.status}`
+          `Cant download screenshot file from server status code: ${response.status}`,
         );
 
       return convertAxiosResponse(response);
@@ -97,7 +97,7 @@ export class Client implements ClientInterface {
    */
   async extract(
     url: string,
-    params: Params = { url: "" }
+    params: Params = { url: "" },
   ): Promise<ResponseInterface> {
     try {
       const request = this.requestFactory();
@@ -110,7 +110,7 @@ export class Client implements ClientInterface {
       const response = await request.post(`/extract`, params);
       if (response.status !== 200)
         throw new Error(
-            `Cant download json file from server status code: ${response.status}`
+          `Cant download json file from server status code: ${response.status}`,
         );
 
       return convertAxiosResponse(response);
@@ -128,7 +128,7 @@ export class Client implements ClientInterface {
       const response = await request.get(`/info`);
       if (response.status !== 200)
         throw new Error(
-            `Cant download json file from server status code: ${response.status}`
+          `Cant download json file from server status code: ${response.status}`,
         );
 
       return convertAxiosResponse(response);
@@ -175,7 +175,7 @@ export class Client implements ClientInterface {
     return {
       endpoint: this.data.endpoint,
       timeout: this.data.timeout,
-      timeout_connection: this.data.timeout_connection
+      timeout_connection: this.data.timeout_connection,
     };
   }
 

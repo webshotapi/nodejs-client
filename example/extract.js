@@ -3,7 +3,9 @@ const Config = require("./config");
 
 (async () => {
   try {
-    const client = new Client(Config.API_KEY);
+    const client = new Client({
+      api_key: Config.API_KEY
+    });
     const result = await client.extract("https://www.example.com", {
       remove_modals: 1,
       ads: 1,

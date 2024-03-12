@@ -5,7 +5,9 @@ const Config = require("../config");
   try {
     // First run create project create script (create.js)
     // After create you will received new project paste it below
-    const client = new Client(Config.API_KEY);
+    const client = new Client({
+      api_key: Config.API_KEY
+    });
     const response = await client
       .projectUrl()
       .create("61fee3be99fc54b1eb52904b", {

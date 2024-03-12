@@ -1,7 +1,7 @@
-const { Client } = require("@webshotapi/client");
 const Config = require("./config");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+const { Client } = require("@webshotapi/client");
 
 const generateSignedUrl = async(key, bucket_name) => {
   const awsClient = new S3Client({
@@ -28,12 +28,14 @@ const generateSignedUrl = async(key, bucket_name) => {
 (async () => {
 
   const aws_signed_url = await generateSignedUrl(
-    'test-file.jpg',
-    'test-bucket'
+     'test-file.jpg',
+     'test-bucket'
   );
 
   try {
-    const client = new Client(Config.API_KEY);
+    const client = new Client({
+      api_key: Config.API_KEY
+    });
     const result = await client.screenshot(
       "https://www.example.com",
       "jpg",
@@ -48,6 +50,20 @@ const generateSignedUrl = async(key, bucket_name) => {
       }
     );
 
+
+    /**
+     * Should return:
+     * {
+     *   html: '',
+     *   text: '',
+     *   screenshot_url: '',
+     *   selectors: [],
+     *   words: [],
+     *   page_properties: {},
+     *   status_code: 200,
+     *   saved_in_cloud: { completed: true }
+     * }
+     */
     console.log(result.json());
 
   } catch (err) {

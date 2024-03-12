@@ -3,7 +3,9 @@ const Config = require("./config");
 
 (async () => {
   try {
-    const client = new Client(Config.API_KEY);
+    const client = new Client({
+      api_key: Config.API_KEY
+    });
     const result = await client.screenshot("https://www.example.com", "jpg", {
       remove_modals: 1,
       width: 1920,
