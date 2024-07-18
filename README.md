@@ -39,7 +39,7 @@ const API_KEY = "YOUR TOKEN HERE";
 (async()=>{
     try{
         const client = new Client(API_KEY);
-        const result = await client.screenshot('https://www.example.com', 'jpg', {
+        const result = await client.screenshot('https://www.example.com', {
             remove_modals: true, // Remove cookies popup
             width: 1920,
             no_cache: 1 // Do not return response file from cache
@@ -201,13 +201,6 @@ const API_KEY = "YOUR TOKEN HERE";
 ## API docs
 Full documentation about our api you can find in this website [API DOCS](https://webshotapi.com/docs/)
 Nodejs client docs: https://webshotapi.com/docs/sdk/nodejs/
-
-## Tests
-```sh
-export WEBSHOTAPI_ENDPOINT=https://api.webshotapi.com/v1
-export WEBSHOTAPI_TEST_API_KEY=0909d85adda21539ecec77d9da67c7d40ac5bb6a652fa240cdc1acc6e411139e # This is example api key ;)
-yarn test
-```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

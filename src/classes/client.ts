@@ -7,14 +7,10 @@ import { Params } from "../types";
 import {
   ClientInterface,
   Request,
-  ProjectUrl,
-  Projects,
-  executor,
   ConfigType,
   convertAxiosResponse,
   ResponseInterface,
 } from "rest-api-client-framework";
-import { SaveProjectUrlWebshotapiDto } from "../types/saveUrl.dto";
 import { WebshotapiClientException } from "../exceptions";
 
 export type ClientConfig = {
@@ -50,7 +46,7 @@ export class Client implements ClientInterface {
     url: string,
     params: Params = { url: "" },
   ): Promise<ResponseInterface> {
-    return await this.screenshot(url, ScreenshotType.PDF, params);
+    return await this.screenshot(url, params, ScreenshotType.PDF);
   }
 
   /**
@@ -61,10 +57,10 @@ export class Client implements ClientInterface {
    */
   async screenshot(
     url: string,
-    file_type: ScreenshotType,
     params: Params = {
       url: "",
     },
+    file_type: ScreenshotType = ScreenshotType.JPG,
   ): Promise<ResponseInterface> {
     try {
       const request = this.requestFactory();
@@ -139,32 +135,6 @@ export class Client implements ClientInterface {
 
   protected requestFactory(): Request {
     return new Request(this);
-  }
-
-  /**
-   * Operation in your projects
-   */
-  project() {
-    return Projects(this);
-  }
-
-  /**
-   * Add url to project or download completed requests
-   */
-  projectUrl() {
-    const projectUrl = ProjectUrl(this);
-    const createWebshotapi = {
-      create: (project_id: string, data: SaveProjectUrlWebshotapiDto) => {
-        return executor(this, {
-          path: `/projects/${project_id}/urls`,
-          data: data,
-          method: "POST",
-          acceptCode: [201],
-        });
-      },
-    };
-
-    return { ...projectUrl, ...createWebshotapi };
   }
 
   globalHeaders(): Record<string, string> {

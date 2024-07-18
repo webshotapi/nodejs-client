@@ -6,11 +6,11 @@ const Config = require("./config");
     const client = new Client({
       api_key: Config.API_KEY
     });
-    const result = await client.screenshot("https://www.example.com", "jpg", {
-      remove_modals: 1,
+    const result = await client.screenshot("https://www.example.com", {
+      remove_modals: true,// Remove cookies modals
       width: 1920,
       no_cache: true,
-      no_cache: 1,
+      no_cache: true,
     });
 
     //save screenshot to file
