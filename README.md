@@ -200,6 +200,7 @@ const API_KEY = "YOUR TOKEN HERE";
 
 ## API docs
 Full documentation about our api you can find in this website [API DOCS](https://webshotapi.com/docs/)
+Nodejs client docs: https://webshotapi.com/docs/sdk/nodejs/
 
 ## Tests
 ```sh
