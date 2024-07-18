@@ -1,5 +1,5 @@
 import { ScreenshotType } from "./screenshot.type";
-import {ResponseSaveCloud} from "./responseSaveCloud";
+import { ResponseSaveCloud } from "./responseSaveCloud";
 
 export type Params = {
   /** Link to website
@@ -228,5 +228,4 @@ export type Params = {
    * @type string
    */
   injection_js?: string;
-
 } & ResponseSaveCloud;
