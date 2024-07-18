@@ -24,8 +24,7 @@ export class Client implements ClientInterface {
   private data: ClientConfig;
 
   /**
-   * Contructor with your API KEY
-   * @param api_key
+   * @param data ClientConfig
    */
   constructor(data: ClientConfig) {
     this.data = {

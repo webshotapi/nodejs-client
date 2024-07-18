@@ -1,10 +1,9 @@
 const { Client } = require("@webshotapi/client");
-const Config = require("./config");
 
 (async () => {
   try {
     const client = new Client({
-      api_key: Config.API_KEY
+      api_key: process.env.WEBSHOTAPI_API_KEY
     });
     const result = await client.extract("https://www.example.com", {
       remove_modals: 1,

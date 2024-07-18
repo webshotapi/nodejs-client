@@ -1,10 +1,9 @@
 const { Client, ScreenshotType } = require("@webshotapi/client");
-const Config = require("./config");
 
 (async () => {
   try {
     const client = new Client({
-      api_key: Config.API_KEY
+      api_key: process.env.WEBSHOTAPI_API_KEY
     });
     const response = await client.screenshot(
       "https://www.example.com",

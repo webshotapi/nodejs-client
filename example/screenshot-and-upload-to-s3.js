@@ -1,4 +1,3 @@
-const Config = require("./config");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const { Client } = require("@webshotapi/client");
@@ -34,7 +33,7 @@ const generateSignedUrl = async(key, bucket_name) => {
 
   try {
     const client = new Client({
-      api_key: Config.API_KEY
+      api_key: process.env.WEBSHOTAPI_API_KEY
     });
     const result = await client.screenshot(
       "https://www.example.com",
