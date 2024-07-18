@@ -17,3 +17,8 @@ export WEBSHOTAPI_ENDPOINT=https://api.webshotapi.com/v1
 export WEBSHOTAPI_API_KEY=0909d85adda21539ecec77d9da67c7d40ac5bb6a652fa240cdc1acc6e411139e # This is example api key ;)
 yarn test
 ```
+
+# Release
+```sh
+bin/release.sh
+```
