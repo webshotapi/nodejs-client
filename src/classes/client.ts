@@ -41,10 +41,7 @@ export class Client implements ClientInterface {
    * @param url
    * @param params
    */
-  async pdf(
-    url: string,
-    params: Params = { url: "" },
-  ): Promise<ResponseInterface> {
+  async pdf(url: string, params: Params): Promise<ResponseInterface> {
     return await this.screenshot(url, params, ScreenshotType.PDF);
   }
 
@@ -56,9 +53,7 @@ export class Client implements ClientInterface {
    */
   async screenshot(
     url: string,
-    params: Params = {
-      url: "",
-    },
+    params: Params,
     file_type: ScreenshotType = ScreenshotType.JPG,
   ): Promise<ResponseInterface> {
     try {
@@ -68,10 +63,13 @@ export class Client implements ClientInterface {
         Accept: `${ConvertTypeToMimeType(file_type)}`,
       });
 
-      params.url = url;
-      params.image_type = file_type;
+      const requestParams = {
+        url: url,
+        image_type: file_type,
+        ...params,
+      };
 
-      const response = await request.post(`/screenshot/image`, params);
+      const response = await request.post(`/screenshot/image`, requestParams);
 
       if (response.status !== 200)
         throw new Error(
@@ -90,10 +88,7 @@ export class Client implements ClientInterface {
    * @param url
    * @param params
    */
-  async extract(
-    url: string,
-    params: Params = { url: "" },
-  ): Promise<ResponseInterface> {
+  async extract(url: string, params: Params): Promise<ResponseInterface> {
     try {
       const request = this.requestFactory();
       request.addHeaders({
@@ -101,8 +96,11 @@ export class Client implements ClientInterface {
         "Content-Type": "application/json",
       });
 
-      params.url = url;
-      const response = await request.post(`/extract`, params);
+      const requestParams = {
+        url: url,
+        ...params,
+      };
+      const response = await request.post(`/extract`, requestParams);
       if (response.status !== 200)
         throw new Error(
           `Cant download json file from server status code: ${response.status}`,

@@ -2,12 +2,6 @@ import { ScreenshotType } from "./screenshot.type";
 import { ResponseSaveCloud } from "./responseSaveCloud";
 
 export type Params = {
-  /** Link to website
-   * https://www.example.com/sport/live/football/55094474
-   *
-   * @type string
-   */
-  url: string;
 
   /**
    * Select screenshot image output format [jpg,pdf,png]
