@@ -32,7 +32,7 @@ Api key you can generate after register.
 
 ### Take screenshot and save jpg to file
 ```javascript
-const { Client } = require('webshotapi');
+const { Client } = require('@webshotapi/client');
 
 //Image download
 const API_KEY = "YOUR TOKEN HERE";
@@ -56,7 +56,7 @@ const API_KEY = "YOUR TOKEN HERE";
 ### Take screenshot and save PDF to file
 You can covert your html page to invoice in PDF.
 ```javascript
-const { Client } = require('webshotapi');
+const { Client } = require('@webshotapi/client');
 
 //Image download
 const API_KEY = "YOUR TOKEN HERE";
@@ -82,7 +82,7 @@ Unique software to extract all selectors for HTML elements from website with css
 
 #### Sample script:
 ```javascript
-const { Client } = require('webshotapi');
+const { Client } = require('@webshotapi/client');
 
 //Image download
 const API_KEY = "YOUR TOKEN HERE";
