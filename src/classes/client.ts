@@ -28,7 +28,7 @@ export class Client implements ClientInterface {
    */
   constructor(data: ClientConfig) {
     this.data = {
-      timeout: 32000,
+      timeout: 50_000,
       endpoint:
         process.env.WEBSHOTAPI_ENDPOINT ?? "https://api.webshotapi.com/v1",
       api_key: process.env.WEBSHOTAPI_KEY,
