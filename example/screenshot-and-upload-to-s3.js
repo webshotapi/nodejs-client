@@ -39,11 +39,7 @@ const generateSignedUrl = async(key, bucket_name) => {
       "https://www.example.com",
       "jpg",
       {
-        remove_modals: 1,
         width: 1920,
-        no_cache: true,
-        no_cache: 1,
-
         response_save_cloud: "aws",
         s3_signed_url: aws_signed_url,
       }

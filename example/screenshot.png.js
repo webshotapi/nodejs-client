@@ -9,10 +9,10 @@ const { Client, ScreenshotType } = require("@webshotapi/client");
       "https://www.example.com",
       {
         ads: true,
+        image_type: "png", // Accept jpg, png, webp, pdf
         remove_modals: true, // Remove cookies modals
         width: 1920,
-      },
-      ScreenshotType.PNG
+      }
     );
 
     await response.save("/tmp/screenshot_test.png");

@@ -6,7 +6,7 @@ const { Client } = require("@webshotapi/client");
       api_key: process.env.WEBSHOTAPI_API_KEY
     });
     const result = await client.pdf("https://www.example.com", {
-      remove_modals: 1,
+      remove_modals: true, // Remove cookies and popups
       width: 1920,
       no_cache: true,
     });

@@ -1,8 +1,5 @@
-import {
-  ConvertTypeToMimeType,
-  ScreenshotType,
-} from "../types/screenshot.type";
-import { Params } from "../types";
+import { ConvertTypeToMimeType } from "../types/screenshot.type";
+import { ExtractResponse, Params } from "../types";
 
 import {
   ClientInterface,
@@ -12,6 +9,7 @@ import {
   ResponseInterface,
 } from "rest-api-client-framework";
 import { WebshotapiClientException } from "../exceptions";
+import { ScreenshotJsonResponseInterface } from "../types/screenshot.json.response";
 
 export type ClientConfig = {
   api_key?: string;
@@ -42,34 +40,39 @@ export class Client implements ClientInterface {
    * @param params
    */
   async pdf(url: string, params: Params): Promise<ResponseInterface> {
-    return await this.screenshot(url, params, ScreenshotType.PDF);
+    return await this.screenshot(url, {
+      image_type: "pdf",
+      ...params,
+    });
   }
 
   /**
    * Take website screenshot in specific file format
    * @param url - url to website
-   * @param file_type - jpg, png, pdf
    * @param params - params like {no_cache: true, width: 1024}
+   * @param json_response - return screenshot as json or image
    */
   async screenshot(
     url: string,
     params: Params,
-    file_type: ScreenshotType = ScreenshotType.JPG,
+    json_response = false,
   ): Promise<ResponseInterface> {
     try {
       const request = this.requestFactory();
       request.addHeaders({
         "Accept-Encoding": "gzip",
-        Accept: `${ConvertTypeToMimeType(file_type)}`,
+        Accept: `${ConvertTypeToMimeType(params?.image_type ?? "jpg")}`,
       });
 
       const requestParams = {
         url: url,
-        image_type: file_type,
         ...params,
       };
 
-      const response = await request.post(`/screenshot/image`, requestParams);
+      const response = await request.post(
+        `/screenshot/${json_response ? "json" : "image"}`,
+        requestParams,
+      );
 
       if (response.status !== 200)
         throw new Error(
@@ -83,12 +86,22 @@ export class Client implements ClientInterface {
   }
 
   /**
+   * Helper function for create screenshot and return json object with url
+   * @param url
+   * @param params
+   */
+  async screenshotJson(url: string, params: Params) {
+    const response = await this.screenshot(url, params, true);
+    return response.json<ScreenshotJsonResponseInterface>();
+  }
+
+  /**
    * Extract words with position, html, text or selectors from website
    *
    * @param url
    * @param params
    */
-  async extract(url: string, params: Params): Promise<ResponseInterface> {
+  async extract(url: string, params: Params): Promise<ExtractResponse> {
     try {
       const request = this.requestFactory();
       request.addHeaders({
@@ -96,17 +109,17 @@ export class Client implements ClientInterface {
         "Content-Type": "application/json",
       });
 
-      const requestParams = {
-        url: url,
+      const response = await request.post(`/extract`, {
+        url,
         ...params,
-      };
-      const response = await request.post(`/extract`, requestParams);
+      });
       if (response.status !== 200)
         throw new Error(
           `Cant download json file from server status code: ${response.status}`,
         );
 
-      return convertAxiosResponse(response);
+      const responseObj = convertAxiosResponse(response);
+      return responseObj.json<ExtractResponse>();
     } catch (err) {
       throw new WebshotapiClientException(err);
     }

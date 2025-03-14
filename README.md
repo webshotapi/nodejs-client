@@ -1,6 +1,6 @@
 # WebShotApi.com API client for NodeJS/Typescript
 
-Capture a screenshot and save the image in formats like JPG, PNG, or PDF. Additionally, you have the capability to retrieve selectors for every HTML element, complete with coordinates and CSS styles following browser rendering. Utilize our API to establish a project and submit your URLs to the queue. Our server will handle all the necessary tasks on your behalf.
+Capture a screenshot and save the image in formats like JPG, PNG, WEBP, or PDF. Additionally, you have the capability to retrieve selectors for every HTML element, complete with coordinates and CSS styles following browser rendering. Utilize our API to establish a project and submit your URLs to the queue. Our server will handle all the necessary tasks on your behalf.
 
 Full documentation about our api you can find in this website [Website screenshot API DOCS](https://webshotapi.com/docs/)
 
@@ -12,10 +12,12 @@ Use the package manager [NPM](https://www.npmjs.com/package/@webshotapi/client) 
 npm install @webshotapi/client
 ```
 
-or
-
 ```sh
 yarn add @webshotapi/client
+```
+
+```sh
+pnpm add @webshotapi/client
 ```
 
 # Remove cookies popup before take sceenshot
@@ -42,7 +44,6 @@ const API_KEY = "YOUR TOKEN HERE";
         const result = await client.screenshot('https://www.example.com', {
             remove_modals: true, // Remove cookies popup
             width: 1920,
-            no_cache: 1 // Do not return response file from cache
         });
         
         //save screenshot to file
@@ -66,7 +67,6 @@ const API_KEY = "YOUR TOKEN HERE";
         const result = await client.pdf('https://www.example.com', {
             remove_modals: true,
             width: 1920,
-            no_cache: true
         });
         
         //save screenshot to file
@@ -90,25 +90,19 @@ const API_KEY = "YOUR TOKEN HERE";
     try{
         const client = new Client(API_KEY);
         const result = await client.extract('https://www.example.com', {
-            "remove_modals": 1,
-            "ads": 1,
+            "ads": true,
             "width": 1680,
             "height": 960,
-            "extract_selectors": 1,
-            "extract_words": 1,
+            "extract_elements": true,
+            "extract_words": true,
             "extract_style": 1,
-            "extract_text": 1,
-            "extract_html": 1,
+            "extract_text": true,
+            "extract_html": true,
         });
-        
-        //get json data
-        let data = result.json();
-        
-        //show result data
-        console.log(data);
 
-        //save data to file
-        result.save('/tmp/test.json');
+        //show result data
+        console.log(result);
+
     }catch(e){
         console.log("Error", e);
     }
@@ -117,14 +111,14 @@ const API_KEY = "YOUR TOKEN HERE";
 
 ```json
 {
-  "selectors": [
+  "elements": [
     {
       "xpath": "/html[1]",
       "css_selector": "html",
       "x": 0,
       "y": 0,
-      "w": 1920,
-      "h": 413,
+      "width": 1920,
+      "height": 413,
       "style": {
         "visibility": "visible",
         "display": "block",
@@ -180,6 +174,9 @@ const API_KEY = "YOUR TOKEN HERE";
       "offset": 145
     }
   ],
+  "html": "<!doctype html><html lang='en' dir='ltr'><head><base hr...",
+  "text": "Welcome in our page\nToday is Monday...",
+  "status_code": 200,
   "page_properties": {
     "viewport": {
       "width": 1920,
@@ -190,10 +187,9 @@ const API_KEY = "YOUR TOKEN HERE";
       "height": 1080
     }
   },
-  "html": "<!doctype html><html lang='en' dir='ltr'><head><base hr...",
-  "text": "Welcome in our page\nToday is Monday...",
-  "screenshot_url": "https://api.webshotapi.com/v1/screenshot/?token=....&width=1920&height=960",
-  "status_code": 200
+  "saved_in_cloud": {
+    "completed": false
+  }
 }
 
 ```

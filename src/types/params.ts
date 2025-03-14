@@ -2,7 +2,6 @@ import { ScreenshotType } from "./screenshot.type";
 import { ResponseSaveCloud } from "./responseSaveCloud";
 
 export type Params = {
-
   /**
    * Select screenshot image output format [jpg,pdf,png]
    * @type string
@@ -65,18 +64,11 @@ export type Params = {
   height?: number;
 
   /**
-   * If you download the same page through our api with the same parameters for the second time, our server will return the data from the cache so as not to chanrge your account twice. If you still want to download the fresh page, you can do so via this option. The data in the cache is stored for 24 hours
-   * @type boolean
-   * @default false
-   */
-  no_cache?: boolean;
-
-  /**
    * If you want to scroll to the bottom of the page, check this option for the browser to load all photos
    * @type boolean
    * @default false
    */
-  scroll_to_botton?: boolean;
+  scroll_to_bottom?: boolean;
 
   /**
    * This will set the device scale factor = 2, producing a high resolution retina screenshot.
@@ -137,14 +129,18 @@ export type Params = {
    * example: ser=1&last_visit=2020-12-09
    * @type string
    */
-  cookies?: string;
+  cookies?: Array<string>;
 
   /**
-   * Provide a list of HTTP headers. Headers will be sent to the server before the screenshot is taken. Example:X-hello=value;X-var=value. Headers for GET request have to be URL encoded.
+   * Provide a object of HTTP headers. Headers will be sent to the server before the screenshot is taken.
+   * @example {
+   *   "X-Custom": "aa",
+   *   "X-Custom2": "123"
+   * }
    *
    * @type string
    */
-  headers?: string;
+  headers?: Record<string, string>;
 
   /**
    * Check this option if you want to take a screenshot of the entire page
@@ -222,4 +218,15 @@ export type Params = {
    * @type string
    */
   injection_js?: string;
+
+  /**
+   * Javascript script will be added to the page before the screenshot is taken.
+   * @example https://webshotapi.com/js/script.js
+   */
+  injection_js_url: string;
+
+  /**
+   * Use your own proxy server, currently, we only support the HTTP protocol.
+   */
+  proxy?: string;
 } & ResponseSaveCloud;

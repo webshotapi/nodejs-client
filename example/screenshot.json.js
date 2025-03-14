@@ -5,13 +5,12 @@ const { Client } = require("@webshotapi/client");
     const client = new Client({
       api_key: process.env.WEBSHOTAPI_API_KEY
     });
-    const result = await client.screenshot("https://www.example.com", {
+    const result = await client.screenshotJson("https://www.example.com", {
       remove_modals: true,// Remove cookies modals
       width: 1920,
     });
 
-    //save screenshot to file
-    await result.save("/tmp/screenshot_test.jpg");
+    console.log(result)
   } catch (err) {
     console.log(`Error: ${err.message}`);
     console.log(err.stack);

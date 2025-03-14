@@ -1,23 +1,19 @@
-export enum ScreenshotType {
-  JPG = "jpg",
-  PNG = "png",
-  PDF = "pdf",
-}
+export type ScreenshotType = "jpg" | "png" | "pdf" | "webp";
 
-export enum OtherType {
-  JSON = "json",
-}
+export type OtherType = "json";
 
 export const ConvertTypeToMimeType = (
-  type: ScreenshotType | OtherType
+  type: ScreenshotType | OtherType,
 ): string => {
   switch (type) {
-    case ScreenshotType.JPG:
+    case "jpg":
       return "image/jpeg";
-    case ScreenshotType.PNG:
+    case "png":
       return "image/png";
-    case ScreenshotType.PDF:
+    case "pdf":
       return "application/pdf";
+    case "webp":
+      return "image/webp";
     case "json":
       return "application/json";
   }

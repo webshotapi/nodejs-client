@@ -2,7 +2,7 @@ import { Client } from "../src/classes/client";
 import * as fs from "fs";
 import * as crypto from "crypto";
 import * as path from "path";
-import * as Jimp from "jimp";
+import { Jimp, diff } from "jimp";
 
 const calcHash = (buffer: Buffer) => {
   return crypto.createHash("md5").update(buffer).digest("hex");
@@ -24,8 +24,8 @@ const compareImages = async (
   const i = await Jimp.read(tmpname);
   const i2 = await Jimp.read(correct_image_path);
 
-  const diff = Jimp.diff(i2, i).percent;
-  expect(diff).toBeLessThanOrEqual(threshold);
+  const diffPercent = diff(i2, i).percent;
+  expect(diffPercent).toBeLessThanOrEqual(threshold);
 };
 
 describe("Screenshot test", () => {
@@ -43,7 +43,7 @@ describe("Screenshot test", () => {
       ads: true,
       remove_modals: true,
       width: 1920,
-    },"jpg");
+    });
 
 
     expect(response.contentType()).toContain("image/jpeg");
@@ -57,15 +57,16 @@ describe("Screenshot test", () => {
     const response = await client.screenshot("https://www.example.com", {
       ads: true,
       remove_modals: true,
+      image_type: "png",
       width: 1920,
-    }, "png");
+    });
 
     expect(response.contentType()).toContain("image/png");
     compareImages(
       path.join(__dirname, "../openapi/screenshot-data/example.png"),
       response.body()
     );
-  });
+  },10_000);
 
   it("Screenshot PDF", async () => {
     const response = await client.pdf("https://www.example.com", {
@@ -76,31 +77,42 @@ describe("Screenshot test", () => {
 
     expect(response.contentType()).toContain("application/pdf");
 
-  });
+  },10_000);
+
+  it("Screenshot WEBP", async () => {
+    const response = await client.screenshot("https://www.example.com", {
+      ads: true,
+      remove_modals: true,
+      image_type: "webp",
+      width: 1920,
+    });
+
+    expect(response.contentType()).toContain("image/webp");
+
+  },10_000);
+
 
   it("Extract JSON", async () => {
-    const response = await client.extract("https://www.example.com", {
+    const data = await client.extract("https://www.example.com", {
       ads: true,
       remove_modals: true,
       width: 1920,
       extract_words: true,
     });
 
-    expect(response.contentType()).toContain("application/json");
-    const data = response.json()
     expect(data.words[1]).toMatchObject({
       "word": "Domain",
       "position": {
         "x": 795,
         "y": 133,
-        "w": 110,
-        "h": 51
+        "width": 110,
+        "height": 51
       },
       "word_index": 1,
       "xpath": "/html[1]/body[1]/div[1]/h1[1]",
       "offset": 8
     })
 
-  });
+  },10_000);
 
 });

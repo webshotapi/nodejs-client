@@ -6,25 +6,20 @@ const { Client } = require("@webshotapi/client");
       api_key: process.env.WEBSHOTAPI_API_KEY
     });
     const result = await client.extract("https://www.example.com", {
-      remove_modals: 1,
-      ads: 1,
+      remove_modals: true,
+      ads: true,
       width: 1680,
       height: 960,
-      extract_selectors: 1,
-      extract_words: 1,
+      extract_elements: true,
+      extract_words: true,
       extract_style: 1,
-      extract_text: 1,
-      extract_html: 1,
+      extract_text: true,
+      extract_html: true,
     });
 
-    //get json data
-    let data = result.json();
-
     //show result data
-    console.log(data);
+    console.log(result);
 
-    //save data to file
-    result.save("/tmp/test.json");
   } catch (err) {
     console.log(`Error: ${err.message}`);
     console.log(err?.response);
