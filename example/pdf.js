@@ -12,7 +12,7 @@ const { Client } = require("@webshotapi/client");
     });
 
     //save screenshot to file
-    await result.save("/tmp/screenshot_test.pdf");
+    await result.save("./screenshot_test.pdf");
   } catch (err) {
     console.log(`Error: ${err.message}`);
     console.log(err?.response?.data);

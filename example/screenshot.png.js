@@ -15,7 +15,7 @@ const { Client, ScreenshotType } = require("@webshotapi/client");
       }
     );
 
-    await response.save("/tmp/screenshot_test.png");
+    await response.save("./screenshot_test.png");
   } catch (err) {
     console.log(`Error: ${err.message}`);
     console.log(err.stack);
