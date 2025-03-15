@@ -8,22 +8,62 @@ on:
 jobs:
 
   create-release:
-    name: Create Release
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # To fetch all history and tags
+
+      # Step 2: Get the previous tag (previous release)
+      - name: Get previous tag
+        id: prev_tag
+        run: |
+          PREV_TAG=$(git tag --sort=-creatordate | sed -n '2p' || echo "")
+          echo "Previous tag: $PREV_TAG"
+          echo "PREV_TAG=$PREV_TAG" >> $GITHUB_ENV
+
+      # Step 3: Generate release notes from commits
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          REPO_URL="https://github.com/${{ github.repository }}"
+          RELEASE_BODY="## What's New in ${{ github.ref_name }}\n\n### Changes:\n"
+          
+          if [ -z "$PREV_TAG" ]; then
+            RELEASE_BODY="🚀 **First Release!**\n\n🎉 Welcome to the first release of the project!"
+          else
+            # Retrieve the commit hashes as short hashes using --abbrev-commit
+            COMMITS=$(git log $PREV_TAG..HEAD --pretty=format:"%h" --reverse)
+            for COMMIT in $COMMITS; do
+              MESSAGE=$(git log -1 --pretty=format:"%s" $COMMIT)
+              COMMIT_URL="$REPO_URL/commit/$COMMIT"
+              RELEASE_BODY+=" - 🔹 [$COMMIT]($COMMIT_URL) $MESSAGE\n"
+            done
+          fi
+
+          echo $RELEASE_BODY > release_notes.txt
+
+      # Step 4: Load release notes into an environment variable
+      - name: Load release notes into variable
+        id: load_notes
+        run: |
+          RELEASE_BODY=$(cat release_notes.txt)
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          echo -e "$RELEASE_BODY" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      # Step 5: Create the release on GitHub
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "Release ${{ github.ref_name }}"
+          body: ${{ env.RELEASE_BODY }}  # Use the loaded environment variable with markdown
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body:
-          draft: false
-          prerelease: false
 
   publish-npm:
     needs: create-release
