@@ -38,22 +38,14 @@ export type Params = {
    * @type boolean
    * @default false
    */
-  ads?: boolean;
+  block_ads?: boolean;
 
   /**
    * Set the page width (Viewport) in pixels. Set 0 if you want to ignore this param
    * @default 1440
    * @type number
    */
-  width?: number;
-
-  /**
-   * If you want to make a thumbnail after taking the screenshot, enter its width in pixels. The ratio will be kept.
-   *
-   * @type number
-   * @default 0
-   */
-  thumbnail_width?: number;
+  viewport_width?: number;
 
   /**
    * Set the page height (Viewport) in pixels. Set 0 if you want to ignore this param
@@ -61,7 +53,23 @@ export type Params = {
    * @type number
    * @default 0
    */
-  height?: number;
+  viewport_height?: number;
+
+  /**
+   * If you want to make a thumbnail after taking the screenshot, enter its width in pixels. If you omit one of the parameters, the other is computed automatically, preserving the aspect ratio.
+   *
+   * @type number
+   * @default 0
+   */
+  thumbnail_width?: number;
+
+  /**
+   * If you want to make a thumbnail after taking the screenshot, enter its height in pixels. If you omit one of the parameters, the other is computed automatically, preserving the aspect ratio.
+   *
+   * @type number
+   * @default 0
+   */
+  thumbnail_height?: number;
 
   /**
    * If you want to scroll to the bottom of the page, check this option for the browser to load all photos
@@ -197,6 +205,34 @@ export type Params = {
    * @type string
    */
   capture_element_selector?: string;
+
+  /**
+   * Indicates whether the viewport should simulate a mobile device, affecting layout and rendering behavior
+   *
+   * @type boolean
+   */
+  viewport_is_mobile?: boolean;
+
+  /**
+   * Enables touch event support in the viewport, simulating touch-capable devices.
+   *
+   * @type boolean
+   */
+  viewport_has_touch?: boolean;
+
+  /**
+   * Determines whether the viewport should be in landscape orientation.
+   *
+   * @type boolean
+   */
+  viewport_is_landscape?: boolean;
+
+  /**
+   * Specifies the device scale factor (e.g., pixel density). Useful for simulating high-DPI devices like Retina displays.
+   *
+   * @type number
+   */
+  viewport_device_scale_factor?: number;
 
   /**
    * CSS string will be added to the page before the screenshot is taken. For GET request have to be URL encoded.
