@@ -39,7 +39,8 @@ describe("Screenshot test", () => {
 
   it("Screenshot JPG", async () => {
 
-    const response = await client.screenshot("https://www.example.com",  {
+    const response = await client.screenshot({
+      url: "https://www.example.com",
       ads: true,
       remove_modals: true,
       width: 1920,
@@ -54,7 +55,8 @@ describe("Screenshot test", () => {
   }, 7000);
 
   it("Screenshot PNG", async () => {
-    const response = await client.screenshot("https://www.example.com", {
+    const response = await client.screenshot({
+      url: "https://www.example.com",
       ads: true,
       remove_modals: true,
       image_type: "png",
@@ -69,10 +71,11 @@ describe("Screenshot test", () => {
   },10_000);
 
   it("Screenshot PDF", async () => {
-    const response = await client.pdf("https://www.example.com", {
-      ads: true,
-      remove_modals: true,
-      width: 1920,
+    const response = await client.pdf({
+        url: "https://www.example.com",
+        ads: true,
+        remove_modals: true,
+        width: 1920,
     });
 
     expect(response.contentType()).toContain("application/pdf");
@@ -80,7 +83,8 @@ describe("Screenshot test", () => {
   },10_000);
 
   it("Screenshot WEBP", async () => {
-    const response = await client.screenshot("https://www.example.com", {
+    const response = await client.screenshot({
+      url: "https://www.example.com",
       ads: true,
       remove_modals: true,
       image_type: "webp",
@@ -92,26 +96,43 @@ describe("Screenshot test", () => {
   },10_000);
 
 
-  it("Extract JSON", async () => {
-    const data = await client.extract("https://www.example.com", {
-      ads: true,
-      remove_modals: true,
-      width: 1920,
-      extract_words: true,
+    it("Extract JSON", async () => {
+        const data = await client.extract({
+            url: "https://www.example.com",
+            ads: true,
+            remove_modals: true,
+            width: 1920,
+            extract_words: true,
+        });
+
+        expect(data.words[1]).toMatchObject({
+            "word": "Domain",
+            "position": {
+                "x": 795,
+                "y": 133,
+                "width": 110,
+                "height": 51
+            },
+            "word_index": 1,
+            "xpath": "/html[1]/body[1]/div[1]/h1[1]",
+            "offset": 8
+        })
+
+    },10_000);
+
+
+    it("Video JSON", async () => {
+    const data = await client.videoJson({
+        url: "https://www.example.com",
+        ads: true,
+        scrolling_enable: true,
+        remove_modals: true,
+        width: 1920,
+        extract_words: true,
     });
 
-    expect(data.words[1]).toMatchObject({
-      "word": "Domain",
-      "position": {
-        "x": 795,
-        "y": 133,
-        "width": 110,
-        "height": 51
-      },
-      "word_index": 1,
-      "xpath": "/html[1]/body[1]/div[1]/h1[1]",
-      "offset": 8
-    })
+    expect(data.url).toBeDefined();
+    expect(data.expire_sec).toBeDefined();
 
   },10_000);
 

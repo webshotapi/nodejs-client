@@ -36,12 +36,12 @@ const generateSignedUrl = async(key, bucket_name) => {
       api_key: process.env.WEBSHOTAPI_API_KEY
     });
     const result = await client.screenshot(
-      "https://www.example.com",
       "jpg",
       {
-        width: 1920,
-        response_save_cloud: "aws",
-        s3_signed_url: aws_signed_url,
+            url: "https://www.example.com",
+            viewport_width: 1920,
+            response_save_cloud: "aws",
+            s3_signed_url: aws_signed_url,
       }
     );
 

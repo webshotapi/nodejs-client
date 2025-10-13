@@ -6,12 +6,12 @@ const { Client, ScreenshotType } = require("@webshotapi/client");
       api_key: process.env.WEBSHOTAPI_API_KEY
     });
     const response = await client.screenshot(
-      "https://www.example.com",
       {
+        url: "https://www.example.com",
         ads: true,
         image_type: "png", // Accept jpg, png, webp, pdf
         remove_modals: true, // Remove cookies modals
-        width: 1920,
+        viewport_width: 1920,
       }
     );
 

@@ -5,9 +5,10 @@ const { Client } = require("@webshotapi/client");
     const client = new Client({
       api_key: process.env.WEBSHOTAPI_API_KEY
     });
-    const result = await client.pdf("https://www.example.com", {
+    const result = await client.pdf( {
+      url: "https://www.example.com",
       remove_modals: true, // Remove cookies and popups
-      width: 1920,
+      viewport_width: 1920,
       no_cache: true,
     });
 

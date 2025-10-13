@@ -26,7 +26,7 @@ export class Client implements ClientInterface {
    */
   constructor(data: ClientConfig) {
     this.data = {
-      timeout: 50_000,
+      timeout: 75_000,
       endpoint:
         process.env.WEBSHOTAPI_ENDPOINT ?? "https://api.webshotapi.com/v1",
       api_key: process.env.WEBSHOTAPI_KEY,
@@ -36,41 +36,25 @@ export class Client implements ClientInterface {
 
   /**
    * Generate screenshot in PDF format
-   * @param url
    * @param params
    */
-  async pdf(url: string, params: Params): Promise<ResponseInterface> {
-    return await this.screenshot(url, {
+  async pdf(params: Params): Promise<ResponseInterface> {
+    return await this.screenshot({
       image_type: "pdf",
       ...params,
     });
   }
 
-  /**
-   * Take website screenshot in specific file format
-   * @param url - url to website
-   * @param params - params like {no_cache: true, width: 1024}
-   * @param json_response - return screenshot as json or image
-   */
-  async screenshot(
-    url: string,
-    params: Params,
-    json_response = false,
-  ): Promise<ResponseInterface> {
+  async video(params: Params, json_response = false) {
     try {
       const request = this.requestFactory();
-      request.addHeaders({
-        "Accept-Encoding": "gzip",
-        Accept: `${ConvertTypeToMimeType(params?.image_type ?? "jpg")}`,
-      });
 
       const requestParams = {
-        url: url,
         ...params,
       };
 
       const response = await request.post(
-        `/screenshot/${json_response ? "json" : "image"}`,
+        `/video/${json_response ? "json" : "binary"}`,
         requestParams,
       );
 
@@ -86,22 +70,65 @@ export class Client implements ClientInterface {
   }
 
   /**
-   * Helper function for create screenshot and return json object with url
-   * @param url
+   * Helper function for create video of website and return json object
    * @param params
    */
-  async screenshotJson(url: string, params: Params) {
-    const response = await this.screenshot(url, params, true);
+  async videoJson(params: Params) {
+    const response = await this.video(params, true);
+    return response.json<ScreenshotJsonResponseInterface>();
+  }
+
+  /**
+   * Take website screenshot in specific file format
+   * @param params - params like {no_cache: true, viewport_width: 1024}
+   * @param json_response - return screenshot as json or image binary
+   */
+  async screenshot(
+    params: Params,
+    json_response = false,
+  ): Promise<ResponseInterface> {
+    try {
+      const request = this.requestFactory();
+      request.addHeaders({
+        "Accept-Encoding": json_response ? "gzip" : undefined,
+        Accept: `${ConvertTypeToMimeType(params?.image_type ?? "jpg")}`,
+      });
+
+      const requestParams = {
+        ...params,
+      };
+
+      const response = await request.post(
+        `/screenshot/${json_response ? "json" : "binary"}`,
+        requestParams,
+      );
+
+      if (response.status !== 200)
+        throw new Error(
+          `Cant download screenshot file from server status code: ${response.status}`,
+        );
+
+      return convertAxiosResponse(response);
+    } catch (err) {
+      throw new WebshotapiClientException(err);
+    }
+  }
+
+  /**
+   * Helper function for create screenshot and return json object
+   * @param params
+   */
+  async screenshotJson(params: Params) {
+    const response = await this.screenshot(params, true);
     return response.json<ScreenshotJsonResponseInterface>();
   }
 
   /**
    * Extract words with position, html, text or selectors from website
    *
-   * @param url
    * @param params
    */
-  async extract(url: string, params: Params): Promise<ExtractResponse> {
+  async extract(params: Params): Promise<ExtractResponse> {
     try {
       const request = this.requestFactory();
       request.addHeaders({
@@ -110,7 +137,6 @@ export class Client implements ClientInterface {
       });
 
       const response = await request.post(`/extract`, {
-        url,
         ...params,
       });
       if (response.status !== 200)
