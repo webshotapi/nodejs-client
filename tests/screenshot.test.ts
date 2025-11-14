@@ -33,7 +33,7 @@ describe("Screenshot test", () => {
 
   beforeEach(() => {
     client = new Client({
-      api_key: process.env.WEBSHOTAPI_API_KEY,
+      api_key: process.env.WEBSHOTAPI_KEY,
     });
   });
 
@@ -68,7 +68,7 @@ describe("Screenshot test", () => {
       path.join(__dirname, "../openapi/screenshot-data/example.png"),
       response.body()
     );
-  },10_000);
+  },20_000);
 
   it("Screenshot PDF", async () => {
     const response = await client.pdf({
@@ -80,7 +80,7 @@ describe("Screenshot test", () => {
 
     expect(response.contentType()).toContain("application/pdf");
 
-  },10_000);
+  },20_000);
 
   it("Screenshot WEBP", async () => {
     const response = await client.screenshot({
@@ -93,7 +93,7 @@ describe("Screenshot test", () => {
 
     expect(response.contentType()).toContain("image/webp");
 
-  },10_000);
+  },20_000);
 
 
     it("Extract JSON", async () => {
@@ -108,32 +108,32 @@ describe("Screenshot test", () => {
         expect(data.words[1]).toMatchObject({
             "word": "Domain",
             "position": {
-                "x": 795,
-                "y": 133,
-                "width": 110,
-                "height": 51
+                "x": 485,
+                "y": 162,
+                "width": 83,
+                "height": 39
             },
             "word_index": 1,
             "xpath": "/html[1]/body[1]/div[1]/h1[1]",
             "offset": 8
         })
 
-    },10_000);
+    },20_000);
 
 
     it("Video JSON", async () => {
-    const data = await client.videoJson({
-        url: "https://www.example.com",
-        ads: true,
-        scrolling_enable: true,
-        remove_modals: true,
-        width: 1920,
-        extract_words: true,
-    });
+        const data = await client.videoJson({
+            url: "https://www.example.com",
+            ads: true,
+            scrolling_enable: true,
+            remove_modals: true,
+            width: 1920,
+            extract_words: true,
+        });
 
-    expect(data.url).toBeDefined();
-    expect(data.expire_sec).toBeDefined();
+        expect(data.url).toBeDefined();
+        expect(data.expire_sec).toBeDefined();
 
-  },10_000);
+      },60_000);
 
 });

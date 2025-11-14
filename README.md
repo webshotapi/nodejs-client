@@ -28,19 +28,54 @@ Utilize an innovative AI algorithm to seamlessly eliminate the obstructive cooki
 
 ## API KEY
 Api key you can generate after register.
-[https://dashboard.webshotapi.com/api_keys](https://dashboard.webshotapi.com/api_keys)
+[https://dashboard.webshotapi.com/WEBSHOTAPI_KEYs](https://dashboard.webshotapi.com/WEBSHOTAPI_KEYs)
 
 ## Usage
 
-### Take screenshot and save jpg to file
+### Take scrolling video screenshot
 ```javascript
 const { Client } = require('@webshotapi/client');
 
 //Image download
-const API_KEY = "YOUR TOKEN HERE";
+const WEBSHOTAPI_KEY = "YOUR TOKEN HERE";
 (async()=>{
     try{
-        const client = new Client(API_KEY);
+        
+        const client = new Client(WEBSHOTAPI_KEY);
+        const data = await client.video({
+            url: "https://www.stripe.com",
+            ads: true,
+            scrolling_enable: true,
+            scrolling_algorithm: "ease_in_quad",
+            scrolling_scroll_delay: 500,
+            scrolling_scroll_distance: 1000,
+            scrolling_scroll_duration: 1500,
+            remove_modals: true,// Remove cookies modals
+            viewport_width: 1920,
+            remove_modals: true,
+            width: 1920,
+            extract_words: true,
+        });
+        
+        //save screenshot to file
+        await result.save('/tmp/screenshot_test.mp4');
+    }catch(e){
+        console.log("Error", e);
+    }
+})();
+```
+
+### Take screenshot and save jpg to file
+![Create scrolling video](https://raw.githubusercontent.com/webshotapi/webshotapi-website-screenshot-php-client/6681d3d38ea13391a30b2e43b8c37191e2d41bef/images/stripe-video.mp4)
+
+```javascript
+const { Client } = require('@webshotapi/client');
+
+//Image download
+const WEBSHOTAPI_KEY = "YOUR TOKEN HERE";
+(async()=>{
+    try{
+        const client = new Client(WEBSHOTAPI_KEY);
         const result = await client.screenshot('https://www.example.com', {
             remove_modals: true, // Remove cookies popup
             viewport_width: 1920,
@@ -60,10 +95,10 @@ You can covert your html page to invoice in PDF.
 const { Client } = require('@webshotapi/client');
 
 //Image download
-const API_KEY = "YOUR TOKEN HERE";
+const WEBSHOTAPI_KEY = "YOUR TOKEN HERE";
 (async()=>{
     try{
-        const client = new Client(API_KEY);
+        const client = new Client(WEBSHOTAPI_KEY);
         const result = await client.pdf('https://www.example.com', {
             remove_modals: true,
             viewport_width: 1920,
@@ -85,10 +120,10 @@ Unique software to extract all selectors for HTML elements from website with css
 const { Client } = require('@webshotapi/client');
 
 //Image download
-const API_KEY = "YOUR TOKEN HERE";
+const WEBSHOTAPI_KEY = "YOUR TOKEN HERE";
 (async()=>{
     try{
-        const client = new Client(API_KEY);
+        const client = new Client(WEBSHOTAPI_KEY);
         const result = await client.extract('https://www.example.com', {
             "ads": true,
             "width": 1680,
