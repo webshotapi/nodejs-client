@@ -1,6 +1,6 @@
 {
   "name": "@webshotapi/client",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "description": "Take screenshot and save image in JPG, PNG, PDF. You can also extract selectors for all HTML elements with coordinates and css styles after browser rendering. Remove cookies popup before take screenshot",
   "main": "dist/index.js",
   "license": "MIT",
