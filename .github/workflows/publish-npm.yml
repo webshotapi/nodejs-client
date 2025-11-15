@@ -5,8 +5,11 @@ on:
     tags:
       - 'v*'
 
-jobs:
+permissions:
+  contents: read
+  id-token: write
 
+jobs:
   create-release:
     runs-on: ubuntu-latest
 

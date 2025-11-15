@@ -1,3 +1,6 @@
+// Install dependencies:
+// npm install @aws-sdk/s3-request-presigner @aws-sdk/client-s3 @webshotapi/client
+
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const { Client } = require("@webshotapi/client");
@@ -35,9 +38,7 @@ const generateSignedUrl = async(key, bucket_name) => {
     const client = new Client({
       api_key: process.env.WEBSHOTAPI_KEY
     });
-    const result = await client.screenshot(
-      "jpg",
-      {
+    const result = await client.screenshot({
             url: "https://www.example.com",
             viewport_width: 1920,
             response_save_cloud: "aws",

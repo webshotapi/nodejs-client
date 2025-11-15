@@ -33,28 +33,24 @@ Api key you can generate after register.
 ## Usage
 
 ### Take scrolling video screenshot
+Example gif:
+[![](https://raw.githubusercontent.com/webshotapi/php-client/63375165338d074d9b54a076977b489a6d913d2b/images/stripe-video.gif)](https://raw.githubusercontent.com/webshotapi/php-client/63375165338d074d9b54a076977b489a6d913d2b/images/stripe-video.gif)
+
+Link to example mp4: https://github.com/webshotapi/php-client/raw/c77cb5a3d84b58a2dfd92ba30ed6850f83d7a52e/images/stripe-video.mp4
+
+
 ```javascript
 const { Client } = require('@webshotapi/client');
 
 //Image download
-const WEBSHOTAPI_KEY = "YOUR TOKEN HERE";
+const WEBSHOTAPI_KEY = process.env.WEBSHOTAPI_KEY || "YOUR TOKEN HERE";
 (async()=>{
     try{
-        
         const client = new Client(WEBSHOTAPI_KEY);
-        const data = await client.video({
-            url: "https://www.stripe.com",
-            ads: true,
-            scrolling_enable: true,
-            scrolling_algorithm: "ease_in_quad",
-            scrolling_scroll_delay: 500,
-            scrolling_scroll_distance: 1000,
-            scrolling_scroll_duration: 1500,
-            remove_modals: true,// Remove cookies modals
+        const result = await client.video({
+            url: 'https://www.example.com',
+            remove_modals: true, // Remove cookies popup
             viewport_width: 1920,
-            remove_modals: true,
-            width: 1920,
-            extract_words: true,
         });
         
         //save screenshot to file
@@ -66,17 +62,17 @@ const WEBSHOTAPI_KEY = "YOUR TOKEN HERE";
 ```
 
 ### Take screenshot and save jpg to file
-![Create scrolling video](https://raw.githubusercontent.com/webshotapi/webshotapi-website-screenshot-php-client/6681d3d38ea13391a30b2e43b8c37191e2d41bef/images/stripe-video.mp4)
 
 ```javascript
 const { Client } = require('@webshotapi/client');
 
 //Image download
-const WEBSHOTAPI_KEY = "YOUR TOKEN HERE";
+const WEBSHOTAPI_KEY = process.env.WEBSHOTAPI_KEY || "YOUR TOKEN HERE";
 (async()=>{
     try{
         const client = new Client(WEBSHOTAPI_KEY);
-        const result = await client.screenshot('https://www.example.com', {
+        const result = await client.screenshot({
+            url: 'https://www.example.com',
             remove_modals: true, // Remove cookies popup
             viewport_width: 1920,
         });
@@ -95,11 +91,12 @@ You can covert your html page to invoice in PDF.
 const { Client } = require('@webshotapi/client');
 
 //Image download
-const WEBSHOTAPI_KEY = "YOUR TOKEN HERE";
+const WEBSHOTAPI_KEY = process.env.WEBSHOTAPI_KEY || "YOUR TOKEN HERE";
 (async()=>{
     try{
         const client = new Client(WEBSHOTAPI_KEY);
-        const result = await client.pdf('https://www.example.com', {
+        const result = await client.pdf({
+            url: 'https://www.example.com',
             remove_modals: true,
             viewport_width: 1920,
         });
@@ -120,27 +117,29 @@ Unique software to extract all selectors for HTML elements from website with css
 const { Client } = require('@webshotapi/client');
 
 //Image download
-const WEBSHOTAPI_KEY = "YOUR TOKEN HERE";
-(async()=>{
-    try{
+const WEBSHOTAPI_KEY = process.env.WEBSHOTAPI_KEY || "YOUR TOKEN HERE";
+(async()=> {
+    try {
         const client = new Client(WEBSHOTAPI_KEY);
-        const result = await client.extract('https://www.example.com', {
-            "ads": true,
-            "width": 1680,
-            "height": 960,
-            "extract_elements": true,
-            "extract_words": true,
-            "extract_style": 1,
-            "extract_text": true,
-            "extract_html": true,
+        const result = await client.extract({
+            url: 'https://www.example.com',
+            ads: true,
+            viewport_width: 1680,
+            viewport_height: 960,
+            extract_elements: true,
+            extract_words: true,
+            extract_style: 1,
+            extract_text: true,
+            extract_html: true,
         });
 
         //show result data
-        console.log(result);
+        console.log(JSON.stringify(result, null, 2));
 
-    }catch(e){
+    } catch (e) {
         console.log("Error", e);
     }
+})();
 ```
 #### Results
 
