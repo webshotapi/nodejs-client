@@ -30,7 +30,7 @@
   ],
   "homepage": "https://webshotapi.com",
   "dependencies": {
-    "rest-api-client-framework": "^1.0.8"
+    "rest-api-client-framework": "^1.0.9"
   },
   "files": [
     "dist"
