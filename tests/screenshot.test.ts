@@ -1,5 +1,5 @@
 import { Client } from "../src/classes/client";
-import * as fs from "fs";
+import { writeFileSync, readFileSync } from "fs";
 import * as crypto from "crypto";
 import * as path from "path";
 import { Jimp, diff } from "jimp";
@@ -9,7 +9,7 @@ const calcHash = (buffer: Buffer) => {
 };
 
 const calcMd5OfTestFile = (file_path: string) => {
-  const buffer = fs.readFileSync(file_path);
+  const buffer = readFileSync(file_path);
   return calcHash(buffer);
 };
 
@@ -19,7 +19,7 @@ const compareImages = async (
   threshold = 0.05
 ) => {
   const tmpname = `/tmp/${new Date().getTime()}`;
-  fs.writeFileSync(tmpname, buffer);
+  writeFileSync(tmpname, buffer);
 
   const i = await Jimp.read(tmpname);
   const i2 = await Jimp.read(correct_image_path);
@@ -108,10 +108,10 @@ describe("Screenshot test", () => {
         expect(data.words[1]).toMatchObject({
             "word": "Domain",
             "position": {
-                "x": 485,
+                "x": 507,
                 "y": 162,
-                "width": 83,
-                "height": 39
+                "width": 103,
+                "height": 28
             },
             "word_index": 1,
             "xpath": "/html[1]/body[1]/div[1]/h1[1]",

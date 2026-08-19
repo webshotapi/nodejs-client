@@ -7,7 +7,7 @@
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",
-    "test": "jest",
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest",
     "docs:gen": "typedoc src/index.ts",
     "dev:mock": "mockoon-cli start -d openapi/mockoon.json --pname openapi",
     "dev:mock:stop": "mockoon-cli stop",
@@ -30,7 +30,7 @@
   ],
   "homepage": "https://webshotapi.com",
   "dependencies": {
-    "rest-api-client-framework": "^1.0.9"
+    "rest-api-client-framework": "^1.0.10"
   },
   "files": [
     "dist"
